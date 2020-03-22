@@ -2,7 +2,7 @@
 
 [This web map](http://www.sci-solve.com/covid-19-Chile/index.html) was adapted by [Dr. Javier Concha](https://www.linkedin.com/in/javieralonsoconcha/) from [the web map](https://app.isnew.info/covid-19/) created by [Dr. Huidae Cho](https://hcho.isnew.info/).
 
-The data is updated manually from the data provided by www.minsal.cl
+The data is updated manually from the daily data provided by www.minsal.cl
 
 ## Disclaimer
 
