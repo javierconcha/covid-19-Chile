@@ -362,7 +362,7 @@ var bodyHeight = Number(bodyStyle.height.replace('px', ''));
 dataSourcesEl.innerHTML = dataSources.replace(/(, )([^,]+)$/, '$1and $2');
 mapEl.style.height = (bodyHeight - headerEl.offsetHeight - (isMobile ? 0 : 8)) + 'px';
 mapEl.style.width = (bodyWidth - infoEl.offsetWidth - (isMobile ? 4 : 6)) + 'px';
-var hasDuplicates = ['South Korea'];
+var hasDuplicates = ['Chile'];
 
 var getColor = function(category, opacity=null){
 	var color = window.getComputedStyle(document.getElementsByClassName(category)[0]).backgroundColor;
@@ -515,7 +515,7 @@ var map = new ol.Map({
 	],
 	view: new ol.View({
 		center: ol.proj.fromLonLat([37.41, 8.82]),
-		zoom: 1,
+		zoom: 4,
 	}),
 	overlays: [popup],
 });
