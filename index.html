@@ -24,7 +24,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <html>
 <head>
-<title>Coronavirus Disease 2019 (COVID-19 or 2019-nCoV) Cases In Chile</title>
+<title>Casos de COVID-19 en Chile (Beta Version)</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="refresh" content="1800" />
@@ -289,7 +289,7 @@ h3 {
 </head>
 <body>
 <div id="header">
-<h1>Casos de COVID-19 en Chile</h1>
+<h1>Casos de COVID-19 en Chile (Beta Version)</h1>
 <div class="follow-me">
 <div class="icons">
 <a href="https://github.com/javierconcha/covid-19-Chile"><span class="iconify" data-icon="fa-solid:code-branch"></span></a>
@@ -298,31 +298,31 @@ h3 {
 <a href="https://www.researchgate.net/profile/Javier_Concha"><span class="iconify" data-icon="fa-brands:researchgate"></span></a>
 <a href="https://www.linkedin.com/in/javieralonsoconcha/"><span class="iconify" data-icon="fa-brands:linkedin"></span></a>
 </div>
-<div class="author">Since March 22, 2020 by <a href="https://sites.google.com/view/javierconcha">Dr. Javier Concha</a></div>
+<div class="author">Creado por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a></div>
 </div>
 <div class="desktop-block">
 Esto es un mapa web "open source" que fue modificado del sitio <a href="https://app.isnew.info/covid-19/">Coronavirus Disease 2019 (COVID-19 or 2019-nCoV) Cases</a> creado por el <a href="https://hcho.isnew.info/">Dr. Huidae Cho</a>, y que usa datos de <span id="data-sources"></span>. Los datos son manualmente actualizados en forma diaria utilizando los datos provistos por el <a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Ministerio de Salud de Chile</a>.
 <!-- All times are local except for plots in UTC. -->
-Disclaimer: Este es un projecto en desarrollo y de forma voluntaria. El autor no se hace responsable por los daños causados por esta página web.
+Disclaimer: Este es un proyecto en desarrollo y de forma voluntaria. El autor no se hace responsable por los daños causados por esta página web.
 <a href="mailto:jaconcha@gmail.com">Sugerencias?</a>
 </div>
 <div class="mobile-block">
-Modificado de <a href="https://app.isnew.info/covid-19/">Coronavirus Disease 2019 (COVID-19 or 2019-nCoV) Cases</a>.
+Modificado de este <a href="https://app.isnew.info/covid-19/">Covid-19 mapa</a> por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a>.
 <!-- Local times except for plots in UTC. -->
 <a href="mailto:jaconcha@gmail.com">Sugerencias?</a>
 </div>
-<div id="legend"><span class="iconify" data-icon="mdi:map-legend"></span> Confirmed: logarithmic, Others: area proportional to confirmed, Active rate: opacity</div>
+<div id="legend"><span class="iconify" data-icon="mdi:map-legend"></span> Confirmados: logarítmico, Otros: area proporcional a confirmados, Tasa Activos: opacidad</div>
 <div id="country-links-wrap"><span class="iconify" data-icon="fa:flag"></span>&nbsp;<span id="country-links"></span></div>
 </div>
 <div id="map"></div>
 <div id="info">
 <div id="summary">
 <h2>Total Chile</h2>
-<div id="last-updated-label">Last Updated:</div><div id="last-updated"></div>
+<div id="last-updated-label">Última Actualización:</div><div id="last-updated"></div>
 <table id="global-stats">
-<tr class="confirmed"><td>Confirmed:</td><td id="total-confirmed" class="right"></td></tr>
-<tr class="recovered"><td>Recovered:</td><td id="total-recovered" class="right"></td></tr>
-<tr class="deaths"><td>Deaths:</td><td id="total-deaths" class="right"></td></tr>
+<tr class="confirmed"><td>Confirmados:</td><td id="total-confirmed" class="right"></td></tr>
+<tr class="recovered"><td>Recuperados:</td><td id="total-recovered" class="right"></td></tr>
+<tr class="deaths"><td>Muertes:</td><td id="total-deaths" class="right"></td></tr>
 </table>
 <div class="cfr">CFR<sup><a href="https://www.worldometers.info/coronavirus/coronavirus-death-rate/"><span class="iconify" data-icon="fa:external-link"></span></a></sup>: <span id="cfr"></span></div>
 </div>
