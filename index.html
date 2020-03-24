@@ -310,14 +310,17 @@ h3 {
 <div class="author">Creado por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a></div>
 </div>
 <div class="desktop-block">
-Esto es un mapa web "open source" que fue modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a> creado por el <a href="https://hcho.isnew.info/">Dr. Huidae Cho</a>, y que usa datos de <span id="data-sources"></span>. Los datos son actualizados diariamente utilizando los datos provistos por el <a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Ministerio de Salud de Chile</a> alrededor de las 11AM hora local.
+Esto es un mapa web "open source" que fue modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a> creado por el <a href="https://hcho.isnew.info/">Dr. Huidae Cho</a>, y que usa datos de <span id="data-sources"></span>. Datos provistos por el <a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Ministerio de Salud de Chile</a> y actualizados alrededor de las 11AM hora local.
 <!-- All times are local except for plots in UTC. -->
-Disclaimer: Este es un proyecto en desarrollo y de forma voluntaria. El autor no se hace responsable por los daños causados por esta página web.
-<a href="mailto:jaconcha@gmail.com">¿Sugerencias?</a>
+
+¿No estas seguro si contrajiste el virus y necesitas el test? <a href="https://coronavirus.udec.cl/"> Haz click aquí.</a>
+
+Disclaimer: Este es un proyecto en desarrollo y de forma voluntaria. El autor no se hace responsable por los daños causados por esta página web. <a href="mailto:jaconcha@gmail.com">¿Sugerencias?</a>
 </div>
 <div class="mobile-block">
-Modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a> por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a>. Datos actualizados alrededor de las 11AM hora local.
+Modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a> por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a>. <a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Datos</a> actualizados alrededor de las 11AM hora local.
 <!-- Local times except for plots in UTC. -->
+<a href="https://coronavirus.udec.cl/">¿Necesito el test? </a>
 <a href="mailto:jaconcha@gmail.com">¿Sugerencias?</a>
 </div>
 <div id="legend"><span class="iconify" data-icon="mdi:map-legend"></span> Confirmados: logarítmico, Otros: area proporcional a confirmados, Tasa Activos: opacidad</div>
@@ -660,7 +663,7 @@ var showPopup = function(stats, coor){
 		height: isMobile ? 70 : 100,
 		margin: {
 			l: isMobile ? 20 : 30,
-			r: isMobile ? 6 : 15,
+			r: isMobile ? 20 : 15,
 			b: isMobile ? 30 : 30,
 			t: 5
 		},
