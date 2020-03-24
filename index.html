@@ -128,7 +128,7 @@ h3 {
 	background-color: #0000ff22;
 }
 #popup {
-	width: 100px;
+	width: 140px;
 }
 #popup-last-updated {
 	text-align: right;
@@ -250,7 +250,7 @@ h3 {
 		display: none;
 	}
 	#popup {
-		width: 200px;
+		width: 300px;
 	}
 	#summary {
 		font-size: 1em;
@@ -313,12 +313,12 @@ h3 {
 Esto es un mapa web "open source" que fue modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a> creado por el <a href="https://hcho.isnew.info/">Dr. Huidae Cho</a>, y que usa datos de <span id="data-sources"></span>. Los datos son actualizados diariamente utilizando los datos provistos por el <a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Ministerio de Salud de Chile</a> alrededor de las 11AM hora local.
 <!-- All times are local except for plots in UTC. -->
 Disclaimer: Este es un proyecto en desarrollo y de forma voluntaria. El autor no se hace responsable por los daños causados por esta página web.
-<a href="mailto:jaconcha@gmail.com">Sugerencias?</a>
+<a href="mailto:jaconcha@gmail.com">¿Sugerencias?</a>
 </div>
 <div class="mobile-block">
 Modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a> por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a>. Datos actualizados alrededor de las 11AM hora local.
 <!-- Local times except for plots in UTC. -->
-<a href="mailto:jaconcha@gmail.com">Sugerencias?</a>
+<a href="mailto:jaconcha@gmail.com">¿Sugerencias?</a>
 </div>
 <div id="legend"><span class="iconify" data-icon="mdi:map-legend"></span> Confirmados: logarítmico, Otros: area proporcional a confirmados, Tasa Activos: opacidad</div>
 <div id="country-links-wrap"><span class="iconify" data-icon="fa:flag"></span>&nbsp;<span id="country-links"></span></div>
@@ -654,14 +654,14 @@ var showPopup = function(stats, coor){
 				color: getColor('deaths')
 			}
 		});
-	var fontSize = isMobile ? 6 : 10;
+	var fontSize = isMobile ? 9 : 10;
 	var layout = {
-		width: document.getElementById('popup-stats').offsetWidth + 5,
-		height: isMobile ? 50 : 100,
+		width: document.getElementById('popup-stats').offsetWidth + 10,
+		height: isMobile ? 70 : 100,
 		margin: {
 			l: isMobile ? 20 : 30,
 			r: isMobile ? 6 : 15,
-			b: isMobile ? 20 : 30,
+			b: isMobile ? 30 : 30,
 			t: 5
 		},
 		font: {
