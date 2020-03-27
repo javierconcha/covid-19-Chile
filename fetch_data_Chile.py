@@ -58,6 +58,7 @@ def merge_data():
     
     with open('data/Chile.csv') as file:
         total_days = len(file.readlines()) - 1
+    print('TOTAL DAYS: '+str(total_days))    
 
     for filename in glob.glob('data/*.csv'):
         name = filename.replace('data/', '').replace('.csv', '')
