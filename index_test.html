@@ -716,11 +716,11 @@
 					 '<div>' + (province ? '<div><a href="?' + name.replace(/ /g, '%20').replace(/"/g, '%22') + '"><span class="iconify" data-icon="fa:link"></span></a></div>' : '') +
 					 '<div><a href="?' + country.replace(/ /g, '%20') + '"><span class="iconify" data-icon="fa:flag"></span></a></div></div>') +
 					'<div onclick="showFeatureStatsById(' + id + ')">' +
-					'<div class="province">' + name + '</div><div class="confirmed">' + lastConfirmed.toLocaleString() + ' confirmed</div>';
+					'<div class="province">' + name + '</div><div class="confirmed">' + lastConfirmed.toLocaleString() + ' confirmados</div>';
 				if(lastRecovered)
-					statsByProvince += '<div class="recovered">' + lastRecovered.toLocaleString() + ' recovered</div>';
+					statsByProvince += '<div class="recovered">' + lastRecovered.toLocaleString() + ' recuperados</div>';
 				if(lastDeaths)
-					statsByProvince += '<div class="deaths">' + lastDeaths.toLocaleString() + ' death' + (lastDeaths > 1 ? 's' : '') + '</div>';
+					statsByProvince += '<div class="deaths">' + lastDeaths.toLocaleString() + ' fallecido' + (lastDeaths > 1 ? 's' : '') + '</div>';
 				statsByProvince += '</div></div>';
 
 				if(!statsByCountry[country])
@@ -781,9 +781,9 @@
 			countryLinksEl.innerHTML += (countryLinksEl.innerHTML ? ', ' : '') +
 				'<a href="?' + country.replace(/ /g, '%20') + '" title="' +
 				sortedByCountry[i].active.toLocaleString() + ' active, ' +
-				sortedByCountry[i].confirmed.toLocaleString() + ' confirmed, ' +
-				sortedByCountry[i].recovered.toLocaleString() + ' recovered, ' +
-				sortedByCountry[i].deaths.toLocaleString() + ' deaths">' + country + '</a>';
+				sortedByCountry[i].confirmed.toLocaleString() + ' confirmados, ' +
+				sortedByCountry[i].recovered.toLocaleString() + ' recuperados, ' +
+				sortedByCountry[i].deaths.toLocaleString() + ' fallecidos">' + country + '</a>';
 			if(countryLinksEl.offsetHeight > singleLineHeight){
 				countryLinksEl.innerHTML = backup;
 				break;
