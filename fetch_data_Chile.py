@@ -26,7 +26,7 @@ import datetime
 import glob
 import os
 
-
+import fetch_data_minsal
 #%%
 geodata_json = 'geodata.json' # name for json data output
 data_csv = 'data.csv' # name to output csv
@@ -261,6 +261,8 @@ def write_csv():
                 f.write('\n')
 
 if __name__ == '__main__':
+    
+    fetch_data_minsal.main()
 
     merge_data()
 
