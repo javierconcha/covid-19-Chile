@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/Users/javier.concha/opt/anaconda3/bin/python
 # coding: utf-8
 """
 Created on Thu Mar 26 11:58:01 2020
@@ -25,6 +25,7 @@ import json
 import datetime
 import glob
 import os
+import subprocess
 
 import fetch_data_minsal
 #%%
@@ -260,14 +261,42 @@ def write_csv():
                     f.write(f',{x["count"]}')
                 f.write('\n')
 
+def send_to_server():
+    cmd1 = 'scp /Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile/data.csv bfbrzn0q0yvx@www.sci-solve.com:/home/bfbrzn0q0yvx/public_html/covid-19-Chile'
+    print(cmd1)
+    prog = subprocess.Popen(cmd1, shell=True,stderr=subprocess.PIPE)
+    out, err = prog.communicate()
+    if err:
+        print(err)
+    else:
+        print('data.csv uploaded to server!')
+
+    cmd2 = 'scp /Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile/geodata.json bfbrzn0q0yvx@www.sci-solve.com:/home/bfbrzn0q0yvx/public_html/covid-19-Chile'                
+    print(cmd2)
+    prog = subprocess.Popen(cmd2, shell=True,stderr=subprocess.PIPE)
+    out, err = prog.communicate()
+    if err:
+        print(err)
+    else:
+        print('geodata.json uploaded to server!')
+
+
+
+#%%	MAIN
 if __name__ == '__main__':
+
+    # if fetch_data_minsal.main():
+    if True:  	
+        merge_data()
     
-    fetch_data_minsal.main()
+        sort_data()
+        report_data()
+    
+        write_geojson()
+        write_csv()    
+    
+        send_to_server()
+    else:
+    	print('Data not updated!')
 
-    merge_data()
 
-    sort_data()
-    report_data()
-
-    write_geojson()
-    write_csv()    

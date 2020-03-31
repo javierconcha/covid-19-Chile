@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/Users/javier.concha/opt/anaconda3/bin/python
 # coding: utf-8
 """
 Created on Sun Mar 29 13:45:50 2020
@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import requests
 import re
 import datetime
-import fetch_data_Chile
+import os
 #%%
 def main():
     # def fetch_data_from_minsal():
@@ -35,27 +35,46 @@ def main():
     
     #%% get last update date
     match_last_update = re.finditer(date_last_update_re, res.text) 
+    print('--------------')
     if not match_last_update:
-        print('Fetching Last Update from Minsal failed')
+        print('Match NOT found from Minsal website.')
     else:    
-        print('Fetching Last Update from Minsal matched')
+        print('Match FOUND from Minsal website.')
     
     for m0 in match_last_update:
         last_year = m0[0].split(' ')[7][:-1]
         last_month = m0[0].split(' ')[5]
         last_day = m0[0].split(' ')[3]
         
-        if last_month == 'marzo':
+        if last_month == 'enero':
+            last_month = '01'
+        elif last_month == 'febrero':
+            last_month = '02'
+        elif last_month == 'marzo':
             last_month = '03'
         elif last_month == 'abril':
             last_month = '04'
         elif last_month == 'mayo':
             last_month = '05'
+        elif last_month == 'junio':
+            last_month = '06'
+        elif last_month == 'julio':
+            last_month = '07'
+        elif last_month == 'agosto':
+            last_month = '08'
+        elif (last_month == 'septiembre' or last_month == 'setiembre'):
+            last_month = '09'
+        elif last_month == 'octubre':
+            last_month = '10'
+        elif last_month == 'noviembre':
+            last_month = '11'
+        elif last_month == 'diciembre':
+            last_month = '12'
         last_date_str = last_year+'-'+last_month+'-'+ last_day
-        print(last_date_str)
     
     #%% today's date
     now = datetime.datetime.now()
+    print(now)
     str_year = str(now.year)
     str_month = str(now.month)
     str_day = str(now.day)
@@ -129,7 +148,7 @@ def main():
                     scv_file = province+', '+country+'.csv'
                 else:
                     scv_file = country+'.csv' 
-                path2csv = 'data/'+scv_file   
+                path2csv = os.path.join('data',scv_file)
                 with open(path2csv, 'r+') as f:
                     lines = f.read().splitlines()
                     last_line = lines[-1]
@@ -140,9 +159,12 @@ def main():
                     else:
                         f.write(new_line)
                         print('File updated.')
-                        
+        flag_updated = True                
     else:
-        print('Last date in website is yesterday!')                    
+        print('Last date in website is yesterday ('+last_date_str+')!')  
+        flag_updated = False      
+
+    return flag_updated                
     
 #%%     
 if __name__ == '__main__':
