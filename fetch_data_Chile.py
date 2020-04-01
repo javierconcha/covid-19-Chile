@@ -28,13 +28,17 @@ import os
 import subprocess
 
 import fetch_data_minsal
+path_main = '/Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile'
+
 #%%
-geodata_json = 'geodata.json' # name for json data output
-data_csv = 'data.csv' # name to output csv
+geodata_json = os.path.join(path_main,'geodata.json') # name for json data output
+data_csv = os.path.join(path_main,'data.csv') # name to output csv
 
 data = [] 
-coors_json = 'coors_Chile.json'
+coors_json = os.path.join(path_main,'coors_Chile.json')
 has_duplicate_data = 'Chile'
+
+
 
 def geocode(country, province, latitude=None, longitude=None):
     # read existing data
@@ -42,6 +46,7 @@ def geocode(country, province, latitude=None, longitude=None):
         with open(coors_json) as f:
             coors = json.load(f)
     else:
+        print('coors_json NOT found!')
         coors = {}
 
     if province == '':
@@ -57,12 +62,15 @@ def geocode(country, province, latitude=None, longitude=None):
 def merge_data():
     global total_days
     
-    with open('data/Chile.csv') as file:
+    with open(os.path.join(path_main,'data/Chile.csv')) as file:
         total_days = len(file.readlines()) - 1
     print('TOTAL DAYS: '+str(total_days))    
 
-    for filename in glob.glob('data/*.csv'):
-        name = filename.replace('data/', '').replace('.csv', '')
+
+    for filename in glob.glob(path_main+'/data/*.csv'):
+        # print(filename)
+        name = filename.split('/')[-1].replace('.csv', '')
+        # print(name)
         if ',' in name:
             x = name.split(',')
             province = x[0].strip()
@@ -84,7 +92,9 @@ def merge_data():
             index = len(confirmed) - 1
             time_str = confirmed[index]['time']
 
-            with open(filename) as f:
+            path_file = os.path.join(path_main,filename[2:])
+            print(path_file)
+            with open(path_file) as f:
                 reader = csv.reader(f)
                 for row in reader:
                     pass
@@ -183,12 +193,17 @@ def report_data():
         r = rec['recovered'][index]['count']
         d = rec['deaths'][index]['count']
         if c == 0 or (country in has_duplicate_data and not province):
+            print('-------------------')
+            print('From Chile.csv:')
+            print(f'Total confirmed: {c}')
+            print(f'Total recovered: {r}')
+            print(f'Total deaths   : {d}')
             continue
         print(f'final: {province}; {country}; {latitude}; {longitude}; {c}; {r}; {d}')
         total_confirmed += c
         total_recovered += r
         total_deaths += d
-
+    print('Calculated from the provinces:')
     print(f'Total confirmed: {total_confirmed}')
     print(f'Total recovered: {total_recovered}')
     print(f'Total deaths   : {total_deaths}')
@@ -286,7 +301,7 @@ def send_to_server():
 if __name__ == '__main__':
 
     if fetch_data_minsal.main():
-    # if True:  	
+    # if True: 	
         merge_data()
     
         sort_data()
