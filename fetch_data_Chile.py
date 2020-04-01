@@ -285,8 +285,8 @@ def send_to_server():
 #%%	MAIN
 if __name__ == '__main__':
 
-    # if fetch_data_minsal.main():
-    if True:  	
+    if fetch_data_minsal.main():
+    # if True:  	
         merge_data()
     
         sort_data()

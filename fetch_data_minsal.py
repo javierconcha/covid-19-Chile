@@ -29,7 +29,7 @@ def main():
     # def fetch_data_from_minsal():
     minsal_url = 'https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/'
     minsal_re = '<tr[^<]*>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<\/tr>'
-    recovered_re = 'Casos recuperados a nivel nacional*<\/strong><\/td>[^<]*<td[^<]*><strong>(.*?)<\/strong>'
+    recovered_re = 'Casos recuperados a nivel nacional [\w-]*<\/strong><\/td>[^<]*<td[^<]*><strong>(.*?)<\/strong><\/td>'
     date_last_update_re = 'Informe corresponde al (.*?)[^>]*\.'
     res = requests.get(minsal_url)
     
@@ -107,20 +107,24 @@ def main():
                     deaths = int(m[5].replace('.', ''))
                     recovered = 0
                     # change special characters to write csv data
-                    if province == 'Tarapacá':
+                    if province[0:3] == 'Ari':
+                        province = 'Arica y Parinacota'
+                    elif province[0:3] == 'Tar':
                         province = 'Tarapaca'
-                    elif province == 'Valparaíso':
+                    elif province[0:3] == 'Val':
                         province = 'Valparaiso'
-                    elif province == 'O&#8217;Higgins':
+                    elif province[0] == 'O':
                         province = 'OHiggins' 
-                    elif province == 'Ñuble':
+                    elif province[1:] == 'uble':
                         province = 'Nuble'
-                    elif province == 'Biobío':
+                    elif province[0:3] == 'Bio':
                         province = 'Bio Bio'
-                    elif province == 'Araucanía':
+                    elif province[0:3] == 'Ara':
                         province = 'Araucania'
-                    elif province == 'Los Ríos':
-                        province = 'Los Rios'                
+                    elif (province[0:3] == 'Los' and province[4] == 'R'):
+                        province = 'Los Rios'  
+                    elif (province[0:3] == 'Los' and province[4] == 'L'):
+                        province = 'Los Lagos'    
                     elif province == 'Aysén':
                         province = 'Aysen'                  
                 else:
@@ -145,10 +149,10 @@ def main():
                     +','+str(recovered)+','+str(deaths)+'\n'
                 print(new_line)        
                 if not province == '':
-                    scv_file = province+', '+country+'.csv'
+                    csv_file = province+', '+country+'.csv'
                 else:
-                    scv_file = country+'.csv' 
-                path2csv = os.path.join('data',scv_file)
+                    csv_file = country+'.csv' 
+                path2csv = os.path.join('data',csv_file)
                 with open(path2csv, 'r+') as f:
                     lines = f.read().splitlines()
                     last_line = lines[-1]
