@@ -79,7 +79,7 @@ def main():
     
     #%% today's date
     now = datetime.datetime.now()
-    print(now)
+    print('Today: '+str(now))
     str_year = str(now.year)
     str_month = str(now.month)
     str_day = str(now.day)
@@ -89,7 +89,7 @@ def main():
         str_day = '0'+str_day
     now_str =str_year+'-'+str_month+'-'+str_day
     
-    if now_str == last_date_str:
+    if now_str == last_date_str: # if date in Minsal website is equal to today
         # fetch table with data
          
         if not re.search(minsal_re, res.text):
@@ -166,7 +166,9 @@ def main():
                         if now_str == last_line[:10]:
                             print('Same dates: '+now_str)
                             print('File NOT updated.')
-                        else:
+                            if not province == '':
+                                return False
+                        else:   
                             f.write(new_line)
                             print('File updated.')
             flag_updated = True                
