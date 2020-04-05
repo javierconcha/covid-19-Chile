@@ -1,8 +1,17 @@
 <!doctype html>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161613554-1"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-161613554-1');
+</script>
 <html>
 <head>
-<title>Coronavirus Disease 2019 (COVID-19 or 2019-nCoV) Cases</title>
-<meta charset="utf-8" />
+	<title>Coronavirus Disease 2019 (COVID-19 or 2019-nCoV) Cases</title>
+	<meta charset="utf-8" />
 <!--
 Name:    index.html
 Purpose: This HTML file creates an interactive web map of COVID-19 cases using
@@ -38,371 +47,371 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 /*******************************************************************************
  * MOBILE FIRST (less processing on mobile)
  ******************************************************************************/
-html {
-	width: 100%;
-	height: 100%;
-}
-body {
-	width: calc(100% - 4px);
-	height: calc(100% - 4px);
-	margin: 0;
-	padding: 2px;
-	overflow: hidden;
-	font-family: sans-serif;
-	font-size: 0.69em;
-}
-.desktop-block, .desktop-inline {
-	display: none;
-}
-a {
-	color: #0000cc;
-	text-decoration: none;
-}
-a:hover {
-	color: black;
-	text-decoration: underline;
-}
+ html {
+ 	width: 100%;
+ 	height: 100%;
+ }
+ body {
+ 	width: calc(100% - 4px);
+ 	height: calc(100% - 4px);
+ 	margin: 0;
+ 	padding: 2px;
+ 	overflow: hidden;
+ 	font-family: sans-serif;
+ 	font-size: 0.69em;
+ }
+ .desktop-block, .desktop-inline {
+ 	display: none;
+ }
+ a {
+ 	color: #0000cc;
+ 	text-decoration: none;
+ }
+ a:hover {
+ 	color: black;
+ 	text-decoration: underline;
+ }
 /*******************************************************************************
  * HEADER (TOP)
  ******************************************************************************/
-#header {
-	line-height: 1.3;
-}
-h1 {
-	display: inline-block;
-	vertical-align: top;
-	width: calc(100% - 106px);
-	margin: 0;
-	font-size: 1.3em;
-	line-height: 1;
-}
-#virus {
-	position: absolute;
-	color: #00000011;
-	right: 70px;
-	font-size: 85px;
-	z-index: -1;
-}
-.follow-me {
-	display: inline-block;
-	vertical-align: top;
-	width: 100px;
-	text-align: right;
-}
-.follow-me .author {
-	display: none;
-	font-size: 0.8em;
-}
-.follow-me .icons {
-	font-size: 1.5em;
-	line-height: 0;
-	margin: 0;
-}
-#data-sources, #legend {
-	text-align: right;
-	font-size: 0.8em;
-}
-#data-sources > .iconify, #legend > .iconify {
-	font-size: 1.5em;
-	margin-bottom: -2px;
-}
-#country-links-wrap {
-	white-space: nowrap;
-}
-#country-links > a {
-	cursor: pointer;
-}
+ #header {
+ 	line-height: 1.3;
+ }
+ h1 {
+ 	display: inline-block;
+ 	vertical-align: top;
+ 	width: calc(100% - 106px);
+ 	margin: 0;
+ 	font-size: 1.3em;
+ 	line-height: 1;
+ }
+ #virus {
+ 	position: absolute;
+ 	color: #00000011;
+ 	right: 70px;
+ 	font-size: 85px;
+ 	z-index: -1;
+ }
+ .follow-me {
+ 	display: inline-block;
+ 	vertical-align: top;
+ 	width: 100px;
+ 	text-align: right;
+ }
+ .follow-me .author {
+ 	display: none;
+ 	font-size: 0.8em;
+ }
+ .follow-me .icons {
+ 	font-size: 1.5em;
+ 	line-height: 0;
+ 	margin: 0;
+ }
+ #data-sources, #legend {
+ 	text-align: right;
+ 	font-size: 0.8em;
+ }
+ #data-sources > .iconify, #legend > .iconify {
+ 	font-size: 1.5em;
+ 	margin-bottom: -2px;
+ }
+ #country-links-wrap {
+ 	white-space: nowrap;
+ }
+ #country-links > a {
+ 	cursor: pointer;
+ }
 /*******************************************************************************
  * MAP (LEFT)
  ******************************************************************************/
-#map {
-	display: inline-block;
-}
+ #map {
+ 	display: inline-block;
+ }
 /*******************************************************************************
  * POPUP (MAP)
  ******************************************************************************/
-#popup {
-	width: 100px;
-}
-h3 {
-	font-size: 1em;
-	margin: 0 0 2px 0;
-}
-#popup-last-updated {
-	text-align: right;
-	font-size: 0.9em;
-}
-#popup-stats {
-	width: 100%;
-	border-collapse: collapse;
-	font-weight: bold;
-}
-#popup .cfr {
-	font-size: 0.75em;
-}
+ #popup {
+ 	width: 100px;
+ }
+ h3 {
+ 	font-size: 1em;
+ 	margin: 0 0 2px 0;
+ }
+ #popup-last-updated {
+ 	text-align: right;
+ 	font-size: 0.9em;
+ }
+ #popup-stats {
+ 	width: 100%;
+ 	border-collapse: collapse;
+ 	font-weight: bold;
+ }
+ #popup .cfr {
+ 	font-size: 0.75em;
+ }
 /*******************************************************************************
  * INFO (RIGHT)
  ******************************************************************************/
-#info {
-	display: inline-block;
-	vertical-align: top;
-	width: 32%;
-	max-width: 300px;
-	font-size: 0.95em;
-}
-h2 {
-	font-size: 1.2em;
-	text-align: center;
-	margin: 0 0 0.1em 0;
-}
-#summary {
-	font-size: 0.8em;
-}
-#last-updated-label {
-	display: none;
-	width: 0%;
-}
-#last-updated {
-	display: inline-block;
-	width: 100%;
-	text-align: right;
-}
-#global-stats {
-	width: 100%;
-	font-weight: bold;
-	font-size: 1.5em;
-	border-collapse: collapse;
-}
-#summary .cfr {
-	font-weight: bold;
-}
-.right {
-	text-align: right;
-}
-.confirmed {
-	background-color: #00000055;
-}
-.recovered {
-	background-color: #00ff0055;
-}
-.deaths {
-	background-color: #ff0000aa;
-}
-#plots {
-	margin-bottom: 0;
-}
-#plots-menu a {
-	display: inline-block;
-	cursor: pointer;
-	color: black;
-	text-decoration: none;
-	text-align: center;
-	border-radius: 5px 5px 0 0;
-	padding: 2px 5px;
-	background: #cccccc;
-	border: 1px solid #aaaaaa;
-	border-bottom: none;
-}
-/* XXX: hover doesn't register a finger release from the touch screen? let's use white here */
-#plots-menu a:hover {
-	background: white;
-}
-#plots-menu .active {
-	background: white;
-}
-#stats-by-province {
-	overflow: auto;
-}
-.stats-by-province {
-	border-top: 1px solid black;
-	padding: 0;
-	font-size: 0.95em;
-	cursor: pointer;
-}
-.stats-by-province > div:first-child {
-	font-weight: bold;
-	margin-bottom: 0;
-}
-.stats-by-province .confirmed, .stats-by-province .recovered, .stats-by-province .deaths {
-	margin-left: 10px;
-	background-color: inherit;
-}
-.stats-by-province .confirmed {
-	color: black;
-}
-.stats-by-province .recovered {
-	color: green;
-}
-.stats-by-province .deaths {
-	color: red;
-}
-.highlighted {
-	background-color: #0000ff22;
-}
+ #info {
+ 	display: inline-block;
+ 	vertical-align: top;
+ 	width: 32%;
+ 	max-width: 300px;
+ 	font-size: 0.95em;
+ }
+ h2 {
+ 	font-size: 1.2em;
+ 	text-align: center;
+ 	margin: 0 0 0.1em 0;
+ }
+ #summary {
+ 	font-size: 0.8em;
+ }
+ #last-updated-label {
+ 	display: none;
+ 	width: 0%;
+ }
+ #last-updated {
+ 	display: inline-block;
+ 	width: 100%;
+ 	text-align: right;
+ }
+ #global-stats {
+ 	width: 100%;
+ 	font-weight: bold;
+ 	font-size: 1.5em;
+ 	border-collapse: collapse;
+ }
+ #summary .cfr {
+ 	font-weight: bold;
+ }
+ .right {
+ 	text-align: right;
+ }
+ .confirmed {
+ 	background-color: #00000055;
+ }
+ .recovered {
+ 	background-color: #00ff0055;
+ }
+ .deaths {
+ 	background-color: #ff0000aa;
+ }
+ #plots {
+ 	margin-bottom: 0;
+ }
+ #plots-menu a {
+ 	display: inline-block;
+ 	cursor: pointer;
+ 	color: black;
+ 	text-decoration: none;
+ 	text-align: center;
+ 	border-radius: 5px 5px 0 0;
+ 	padding: 2px 5px;
+ 	background: #cccccc;
+ 	border: 1px solid #aaaaaa;
+ 	border-bottom: none;
+ }
+ /* XXX: hover doesn't register a finger release from the touch screen? let's use white here */
+ #plots-menu a:hover {
+ 	background: white;
+ }
+ #plots-menu .active {
+ 	background: white;
+ }
+ #stats-by-province {
+ 	overflow: auto;
+ }
+ .stats-by-province {
+ 	border-top: 1px solid black;
+ 	padding: 0;
+ 	font-size: 0.95em;
+ 	cursor: pointer;
+ }
+ .stats-by-province > div:first-child {
+ 	font-weight: bold;
+ 	margin-bottom: 0;
+ }
+ .stats-by-province .confirmed, .stats-by-province .recovered, .stats-by-province .deaths {
+ 	margin-left: 10px;
+ 	background-color: inherit;
+ }
+ .stats-by-province .confirmed {
+ 	color: black;
+ }
+ .stats-by-province .recovered {
+ 	color: green;
+ }
+ .stats-by-province .deaths {
+ 	color: red;
+ }
+ .highlighted {
+ 	background-color: #0000ff22;
+ }
 /*******************************************************************************
  * DESKTOP
  ******************************************************************************/
-@media screen and (min-width: 640px) {
-	html {
-		height: 100%;
-	}
-	body {
-		width: calc(100% - 10px);
-		height: calc(100% - 10px);
-		padding: 5px;
-		font-size: 1em;
-	}
-	.desktop-block {
-		display: block;
-	}
-	.desktop-inline {
-		display: inline;
-	}
-	.mobile-block, .mobile-inline {
-		display: none;
-	}
+ @media screen and (min-width: 640px) {
+ 	html {
+ 		height: 100%;
+ 	}
+ 	body {
+ 		width: calc(100% - 10px);
+ 		height: calc(100% - 10px);
+ 		padding: 5px;
+ 		font-size: 1em;
+ 	}
+ 	.desktop-block {
+ 		display: block;
+ 	}
+ 	.desktop-inline {
+ 		display: inline;
+ 	}
+ 	.mobile-block, .mobile-inline {
+ 		display: none;
+ 	}
 	/***********************************************************************
 	 * HEADER (TOP)
 	 **********************************************************************/
-	#header {
-		line-height: 1.5;
-	}
-	h1 {
-		width: calc(75% - 6px);
-		font-size: 1.7em;
-	}
-	#virus {
-		right: 150px;
-		font-size: 200px;
-	}
-	.follow-me {
-		width: 25%;
-	}
-	.follow-me .author {
-		display: inline;
-	}
-	#data-sources > .iconify, #legend > .iconify {
-		margin-bottom: -3px;
-	}
-	#country-links-wrap {
-		font-size: 0.8em;
-	}
+	 #header {
+	 	line-height: 1.5;
+	 }
+	 h1 {
+	 	width: calc(75% - 6px);
+	 	font-size: 1.7em;
+	 }
+	 #virus {
+	 	right: 150px;
+	 	font-size: 200px;
+	 }
+	 .follow-me {
+	 	width: 25%;
+	 }
+	 .follow-me .author {
+	 	display: inline;
+	 }
+	 #data-sources > .iconify, #legend > .iconify {
+	 	margin-bottom: -3px;
+	 }
+	 #country-links-wrap {
+	 	font-size: 0.8em;
+	 }
 	/***********************************************************************
 	 * MAP (LEFT)
 	 **********************************************************************/
-	.ol-attribution {
-		font-size: 0.7em;
-	}
+	 .ol-attribution {
+	 	font-size: 0.7em;
+	 }
 	/***********************************************************************
 	 * POPUP (MAP)
 	 **********************************************************************/
-	#popup {
-		width: 200px;
-	}
-	h3 {
-		margin: 0 0 5px 0;
-	}
-	#popup .cfr {
-		font-size: 0.9em;
-	}
+	 #popup {
+	 	width: 200px;
+	 }
+	 h3 {
+	 	margin: 0 0 5px 0;
+	 }
+	 #popup .cfr {
+	 	font-size: 0.9em;
+	 }
 	/***********************************************************************
 	 * INFO (RIGHT)
 	 **********************************************************************/
-	#info {
-		width: 25%;
+	 #info {
+	 	width: 25%;
+	 }
+	 h2 {
+	 	font-size: 1.5em;
+	 	margin: 0 0 0.2em 0;
+	 }
+	 #summary {
+	 	font-size: 1em;
+	 }
+	 #last-updated-label {
+	 	display: inline-block;
+	 	width: 35%;
+	 }
+	 #last-updated {
+	 	width: 65%;
+	 }
+	 #summary .cfr {
+	 	font-size: 1.2em;
+	 }
+	 .cfr sup {
+	 	font-size: 0.7em;
+	 }
+	 #plots {
+	 	margin-bottom: 10px;
+	 }
+	 #plots-menu a:hover {
+	 	background: #dddddd;
+	 }
+	 #stats-by-province {
+	 	font-size: 0.9em;
+	 }
+	 .stats-by-province .province {
+	 	margin-bottom: 5px;
+	 }
 	}
-	h2 {
-		font-size: 1.5em;
-		margin: 0 0 0.2em 0;
-	}
-	#summary {
-		font-size: 1em;
-	}
-	#last-updated-label {
-		display: inline-block;
-		width: 35%;
-	}
-	#last-updated {
-		width: 65%;
-	}
-	#summary .cfr {
-		font-size: 1.2em;
-	}
-	.cfr sup {
-		font-size: 0.7em;
-	}
-	#plots {
-		margin-bottom: 10px;
-	}
-	#plots-menu a:hover {
-		background: #dddddd;
-	}
-	#stats-by-province {
-		font-size: 0.9em;
-	}
-	.stats-by-province .province {
-		margin-bottom: 5px;
-	}
-}
 </style>
 </head>
 <body>
-<div id="header">
-<h1>Coronavirus Disease 2019 <span class="desktop-inline">(COVID-19 or 2019-nCoV)</span> Cases</h1>
-<span id="virus" class="iconify" data-icon="mdi:virus"></span>
-<div class="follow-me">
-<div class="icons">
-<a href="https://github.com/HuidaeCho/covid-19"><span class="iconify" data-icon="fa-solid:code-branch"></span></a>
-<a href="https://github.com/HuidaeCho"><span class="iconify" data-icon="fa-brands:github"></span></a>
-<a href="https://twitter.com/HuidaeCho"><span class="iconify" data-icon="fa-brands:twitter"></span></a>
-<a href="https://researchgate.net/profile/Huidae_Cho"><span class="iconify" data-icon="fa-brands:researchgate"></span></a>
-<a href="https://linkedin.com/in/HuidaeCho"><span class="iconify" data-icon="fa-brands:linkedin"></span></a>
-</div>
-<div class="author">Since February 2, 2020 by <a href="https://idea.isnew.info">Huidae Cho</a></div>
-</div>
-<div class="desktop-block">
-This open source web map was motivated by <a href="https://arcg.is/0fHmTX">the COVID-19 global cases website</a> by <a href="https://systems.jhu.edu">Johns Hopkins CSSE</a>.
-Data is fetched every 30 minutes.
-All times are local except for plots in UTC.
-I am not responsible for any damages caused by using this website.
-<a href="/covid-19.html">Suggestions?</a>
-</div>
-<div class="mobile-block">
-Motivated by <a href="https://arcg.is/1DPOWm0">the JHU CSSE website</a>.
-Local times except for plots in UTC.
-<a href="/covid-19.html">Suggestions?</a>
-</div>
-<div id="data-sources"></div>
-<div id="legend"><span class="iconify" data-icon="mdi:map-legend"></span> Confirmed: logarithmic, Others: area proportional to confirmed, Active rate: opacity</div>
-<div id="country-links-wrap"><span id="country-links">&nbsp;</span></div>
-</div>
-<div id="map"></div>
-<div id="info">
-<div id="summary">
-<h2>Global Total</h2>
-<div id="last-updated-label">Last Updated:</div><div id="last-updated"></div>
-<table id="global-stats">
-<tr class="confirmed"><td>Confirmed:</td><td id="total-confirmed" class="right"></td></tr>
-<tr class="recovered"><td>Recovered:</td><td id="total-recovered" class="right"></td></tr>
-<tr class="deaths"><td>Deaths:</td><td id="total-deaths" class="right"></td></tr>
-</table>
-<div class="cfr">CFR<sup><a href="https://www.worldometers.info/coronavirus/coronavirus-death-rate/"><span class="iconify" data-icon="fa:external-link"></span></a></sup>: <span id="cfr"></span></div>
-</div>
-<div id="plots">
-<div id="plots-menu"></div>
-<div id="plot"></div>
-</div>
-<div id="stats-by-province"></div>
-</div>
-<script>
-var dataUrl = 'geodata.json'
-var dataSources = '<a href="https://arcg.is/0fHmTX">CSSE</a><sup><a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_daily_reports">1</a>' +
-	',<a href="https://services9.arcgis.com/N9p5hsImWXAccRNI/arcgis/rest/services/Nc2JKvYFoAEOFCG5JSI6/FeatureServer/1/query?where=1%3D1&outFields=*&f=json">2</a></sup>' +
-	', <a href="https://ncov.dxy.cn/ncovh5/view/pneumonia">DXY</a>' +
-	', <a href="http://ncov.mohw.go.kr/bdBoardList_Real.do">KCDC</a>' +
-	', <a href="https://statistichecoronavirus.it/regioni-coronavirus-italia/">StatisticheCoronavirus</a>' +
-	', <a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Minsal</a>' +
-	'';
+	<div id="header">
+		<h1>Coronavirus Disease 2019 <span class="desktop-inline">(COVID-19 or 2019-nCoV)</span> Cases</h1>
+		<span id="virus" class="iconify" data-icon="mdi:virus"></span>
+		<div class="follow-me">
+			<div class="icons">
+				<a href="https://github.com/HuidaeCho/covid-19"><span class="iconify" data-icon="fa-solid:code-branch"></span></a>
+				<a href="https://github.com/HuidaeCho"><span class="iconify" data-icon="fa-brands:github"></span></a>
+				<a href="https://twitter.com/HuidaeCho"><span class="iconify" data-icon="fa-brands:twitter"></span></a>
+				<a href="https://researchgate.net/profile/Huidae_Cho"><span class="iconify" data-icon="fa-brands:researchgate"></span></a>
+				<a href="https://linkedin.com/in/HuidaeCho"><span class="iconify" data-icon="fa-brands:linkedin"></span></a>
+			</div>
+			<div class="author">Since February 2, 2020 by <a href="https://idea.isnew.info">Huidae Cho</a></div>
+		</div>
+		<div class="desktop-block">
+			This open source web map was motivated by <a href="https://arcg.is/0fHmTX">the COVID-19 global cases website</a> by <a href="https://systems.jhu.edu">Johns Hopkins CSSE</a>.
+			Data is fetched every 30 minutes.
+			All times are local except for plots in UTC.
+			I am not responsible for any damages caused by using this website.
+			<a href="/covid-19.html">Suggestions?</a>
+		</div>
+		<div class="mobile-block">
+			Motivated by <a href="https://arcg.is/1DPOWm0">the JHU CSSE website</a>.
+			Local times except for plots in UTC.
+			<a href="/covid-19.html">Suggestions?</a>
+		</div>
+		<div id="data-sources"></div>
+		<div id="legend"><span class="iconify" data-icon="mdi:map-legend"></span> Confirmed: logarithmic, Others: area proportional to confirmed, Active rate: opacity</div>
+		<div id="country-links-wrap"><span id="country-links">&nbsp;</span></div>
+	</div>
+	<div id="map"></div>
+	<div id="info">
+		<div id="summary">
+			<h2>Global Total</h2>
+			<div id="last-updated-label">Last Updated:</div><div id="last-updated"></div>
+			<table id="global-stats">
+				<tr class="confirmed"><td>Confirmed:</td><td id="total-confirmed" class="right"></td></tr>
+				<tr class="recovered"><td>Recovered:</td><td id="total-recovered" class="right"></td></tr>
+				<tr class="deaths"><td>Deaths:</td><td id="total-deaths" class="right"></td></tr>
+			</table>
+			<div class="cfr">CFR<sup><a href="https://www.worldometers.info/coronavirus/coronavirus-death-rate/"><span class="iconify" data-icon="fa:external-link"></span></a></sup>: <span id="cfr"></span></div>
+		</div>
+		<div id="plots">
+			<div id="plots-menu"></div>
+			<div id="plot"></div>
+		</div>
+		<div id="stats-by-province"></div>
+	</div>
+	<script>
+		var dataUrl = 'geodata.json'
+		var dataSources = '<a href="https://arcg.is/0fHmTX">CSSE</a><sup><a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_daily_reports">1</a>' +
+		',<a href="https://services9.arcgis.com/N9p5hsImWXAccRNI/arcgis/rest/services/Nc2JKvYFoAEOFCG5JSI6/FeatureServer/1/query?where=1%3D1&outFields=*&f=json">2</a></sup>' +
+		', <a href="https://ncov.dxy.cn/ncovh5/view/pneumonia">DXY</a>' +
+		', <a href="http://ncov.mohw.go.kr/bdBoardList_Real.do">KCDC</a>' +
+		', <a href="https://statistichecoronavirus.it/regioni-coronavirus-italia/">StatisticheCoronavirus</a>' +
+		', <a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Minsal</a>' +
+		'';
 // XXX: Add your Bing Maps key here and secure it from the Bing Maps Dev Center at https://www.bingmapsportal.com
 var bingMapsKey = 'AhuHr9JixtsyKu9uSOQ8W0lIr7_gC2KiFxOlmshvRDb_BSWDkhnGX7oeS5zJzHo0';
 var isMobile = window.getComputedStyle(document.getElementsByClassName('mobile-block')[0]).display == 'block';
@@ -473,33 +482,33 @@ var createStyle = function(feature, resolution){
 		if(resolution > 4000)
 			stroke = null;
 		style = [
-			new ol.style.Style({
-				image: new ol.style.Circle({
-					radius: confirmedRadius,
-					fill: new ol.style.Fill({
-						color: getColor('confirmed', opacity)
-					}),
-					stroke: stroke
-				})
-			}),
-			new ol.style.Style({
-				image: new ol.style.Circle({
-					radius: recoveredRadius,
-					fill: new ol.style.Fill({
-						color: getColor('recovered', opacity)
-					}),
-					stroke: stroke
-				})
-			}),
-			new ol.style.Style({
-				image: new ol.style.Circle({
-					radius: deathsRadius,
-					fill: new ol.style.Fill({
-						color: getColor('deaths', 2 * opacity)
-					}),
-					stroke: stroke
-				})
+		new ol.style.Style({
+			image: new ol.style.Circle({
+				radius: confirmedRadius,
+				fill: new ol.style.Fill({
+					color: getColor('confirmed', opacity)
+				}),
+				stroke: stroke
 			})
+		}),
+		new ol.style.Style({
+			image: new ol.style.Circle({
+				radius: recoveredRadius,
+				fill: new ol.style.Fill({
+					color: getColor('recovered', opacity)
+				}),
+				stroke: stroke
+			})
+		}),
+		new ol.style.Style({
+			image: new ol.style.Circle({
+				radius: deathsRadius,
+				fill: new ol.style.Fill({
+					color: getColor('deaths', 2 * opacity)
+				}),
+				stroke: stroke
+			})
+		})
 		];
 	}else{
 		var data = [recovered, confirmed - recovered - deaths, deaths];
@@ -527,57 +536,57 @@ var map = new ol.Map({
 	target: 'map',
 	controls: ol.control.defaults().extend([new ol.control.ScaleLine({units:'us'})]),
 	layers: [
+	new ol.layer.Group({
+		title: 'Base maps',
+		openInLayerSwitcher: true,
+		layers: [
 		new ol.layer.Group({
-			title: 'Base maps',
-			openInLayerSwitcher: true,
+			title: 'Water color',
+			baseLayer: true,
+			combine: true,
 			layers: [
-				new ol.layer.Group({
-					title: 'Water color',
-					baseLayer: true,
-					combine: true,
-					layers: [
-						new ol.layer.Tile({
-							title: 'Base map',
-							source: new ol.source.Stamen({
-								layer: 'watercolor'
-							})
-						}),
-						new ol.layer.Tile({
-							title: 'Labels',
-							source: new ol.source.Stamen({
-								layer: 'terrain-labels'
-							})
-						})
-					],
-					visible: false
-				}),
-				new ol.layer.Tile({
-					title: 'Bing aerial',
-					baseLayer: true,
-					source: new ol.source.BingMaps({
-						key: bingMapsKey,
-						imagerySet: 'AerialWithLabelsOnDemand',
-					}),
-					visible: false
-				}),
-				new ol.layer.Tile({
-					title: 'Open Street',
-					baseLayer: true,
-					source: new ol.source.OSM()
+			new ol.layer.Tile({
+				title: 'Base map',
+				source: new ol.source.Stamen({
+					layer: 'watercolor'
 				})
-			]
-		}),
-		new ol.layer.Vector({
-			title: 'COVID-19 cases',
-			source: new ol.source.Vector({
-				format: new ol.format.GeoJSON(),
-				url: dataUrl,
-				attributions: '&copy; Data sources: ' + dataSources
 			}),
-			style: function(feature, resolution){
-				return createStyle(feature, resolution);
-			}
+			new ol.layer.Tile({
+				title: 'Labels',
+				source: new ol.source.Stamen({
+					layer: 'terrain-labels'
+				})
+			})
+			],
+			visible: false
+		}),
+		new ol.layer.Tile({
+			title: 'Bing aerial',
+			baseLayer: true,
+			source: new ol.source.BingMaps({
+				key: bingMapsKey,
+				imagerySet: 'AerialWithLabelsOnDemand',
+			}),
+			visible: false
+		}),
+		new ol.layer.Tile({
+			title: 'Open Street',
+			baseLayer: true,
+			source: new ol.source.OSM()
 		})
+		]
+	}),
+	new ol.layer.Vector({
+		title: 'COVID-19 cases',
+		source: new ol.source.Vector({
+			format: new ol.format.GeoJSON(),
+			url: dataUrl,
+			attributions: '&copy; Data sources: ' + dataSources
+		}),
+		style: function(feature, resolution){
+			return createStyle(feature, resolution);
+		}
+	})
 	],
 	view: new ol.View({
 		center: ol.proj.fromLonLat([37.41, 8.82]),
@@ -603,7 +612,7 @@ map.on('singleclick', function(evt){
 		window.location.hash = 'feature-' + feature.id;
 		showFeatureStatsAtCoordinates(feature, evt.coordinate);
 	}else if(keepPopupOpen)
-		keepPopupOpen = false;
+	keepPopupOpen = false;
 	else{
 		highlightProvinceStats([]);
 		popup.hide();
@@ -614,11 +623,11 @@ var createLinks = function(country, province, admin2, featureId, isPopup){
 	var admin2Query = admin2 ? admin2 + ', ' + province + ', ' + country : null;
 	var provinceQuery = province ? province + ', ' + country : null;
 	var links = featureId != null ?
-		(admin2 ? '<a onclick="showFeatureStatsById(' + featureId + ')">' + admin2 + '</a>, ' : '') +
-		(province ? '<a onclick="' + (admin2 ? (isPopup ? 'keepPopupOpen=true;' : '') + 'showFeatureStatsByQuery(\'' + provinceQuery + '\')' : 'showFeatureStatsById(' + featureId + ')') + '">' + province + '</a>, ' : '') +
-		'<a onclick="' + (province ? (isPopup ? 'keepPopupOpen=true;' : '') + 'showFeatureStatsByQuery(\'' + country + '\')' : 'showFeatureStatsById(' + featureId + ')') + '">' + country + '</a>' :
-		(province ? '<a onclick="showFeatureStatsByQuery(\'' + provinceQuery + '\')">' + province + '</a>, ' : '') +
-		'<a onclick="showFeatureStatsByQuery(\'' + country + '\')">' + country + '</a>';
+	(admin2 ? '<a onclick="showFeatureStatsById(' + featureId + ')">' + admin2 + '</a>, ' : '') +
+	(province ? '<a onclick="' + (admin2 ? (isPopup ? 'keepPopupOpen=true;' : '') + 'showFeatureStatsByQuery(\'' + provinceQuery + '\')' : 'showFeatureStatsById(' + featureId + ')') + '">' + province + '</a>, ' : '') +
+	'<a onclick="' + (province ? (isPopup ? 'keepPopupOpen=true;' : '') + 'showFeatureStatsByQuery(\'' + country + '\')' : 'showFeatureStatsById(' + featureId + ')') + '">' + country + '</a>' :
+	(province ? '<a onclick="showFeatureStatsByQuery(\'' + provinceQuery + '\')">' + province + '</a>, ' : '') +
+	'<a onclick="showFeatureStatsByQuery(\'' + country + '\')">' + country + '</a>';
 	return links;
 };
 
@@ -699,17 +708,17 @@ var showPopup = function(stats, coor){
 	if(lastDeaths) lastDeaths = lastDeaths.toLocaleString();
 
 	var content =
-		'<div id="popup"><h3>' + createLinks(stats.country, stats.province, stats.admin2, stats.featureId, true) + '</h3>' +
-		'<div id="popup-last-updated">' + new Date(lastUpdated).toLocaleString() + '</div>' +
-		'<table id="popup-stats">' +
-		(lastConfirmed ? '<tr class="confirmed"><td>Confirmed:</td><td class="right">' + lastConfirmed + '</td></tr>' : '') +
-		(lastRecovered ? '<tr class="recovered"><td>Recovered:</td><td class="right">' + lastRecovered + '</td></tr>' : '') +
-		(lastDeaths ? '<tr class="deaths"><td>Deaths:</td><td class="right">' + lastDeaths + '</td></tr>' : '') +
-		'</table>' +
-		'<div class="cfr">CFR<sup><a href="https://www.worldometers.info/coronavirus/coronavirus-death-rate/"><span class="iconify" data-icon="fa:external-link"></span></a></sup>: ' +
-		(cfrT ? '<sup>T=' + T + '</sup>' + cfrT + '%' + (isMobile || !cfrDDR ? '' : ', ') : '') +
-		(cfrDDR ? '<sup>d/(d+r)</sup>' + cfrDDR + '%</div>' : '') +
-		'<div id="popup-plot"></div></div>';
+	'<div id="popup"><h3>' + createLinks(stats.country, stats.province, stats.admin2, stats.featureId, true) + '</h3>' +
+	'<div id="popup-last-updated">' + new Date(lastUpdated).toLocaleString() + '</div>' +
+	'<table id="popup-stats">' +
+	(lastConfirmed ? '<tr class="confirmed"><td>Confirmed:</td><td class="right">' + lastConfirmed + '</td></tr>' : '') +
+	(lastRecovered ? '<tr class="recovered"><td>Recovered:</td><td class="right">' + lastRecovered + '</td></tr>' : '') +
+	(lastDeaths ? '<tr class="deaths"><td>Deaths:</td><td class="right">' + lastDeaths + '</td></tr>' : '') +
+	'</table>' +
+	'<div class="cfr">CFR<sup><a href="https://www.worldometers.info/coronavirus/coronavirus-death-rate/"><span class="iconify" data-icon="fa:external-link"></span></a></sup>: ' +
+	(cfrT ? '<sup>T=' + T + '</sup>' + cfrT + '%' + (isMobile || !cfrDDR ? '' : ', ') : '') +
+	(cfrDDR ? '<sup>d/(d+r)</sup>' + cfrDDR + '%</div>' : '') +
+	'<div id="popup-plot"></div></div>';
 
 	// XXX: why does popup.show() trigger a singleclick event when an
 	// aggregating query link is clicked from the popup? this extra event
@@ -800,79 +809,79 @@ var showFeatureStatsByQuery = function(query){
 			featureIds.push(featureId);
 		}
 	}else
-		features.forEach(feature => {
-			var featureId = feature.id;
-			var country = feature.properties.country;
-			var province = feature.properties.province;
-			var admin2 = feature.properties.admin2;
-			var admin2Query = admin2 + ', ' + province + ', ' + country;
-			var provinceQuery = province + ', ' + country;
-			var coor = ol.proj.fromLonLat(feature.geometry.coordinates);
-			if(hasDuplicateData.indexOf(query) >= 0){
-				if(query == country){
-					if(!province){
-						var s = calculateStats(feature);
-						stats.lastUpdated = s.lastUpdated;
-						stats.time = s.time;
-						stats.confirmed = s.confirmed;
-						stats.recovered = s.recovered;
-						stats.deaths = s.deaths;
-					}else
-						featureIds.push(featureId);
-				}
-			}else if(admin2Query == query || admin2Query.indexOf(query) >= 0 ||
-				 provinceQuery == query || provinceQuery.indexOf(query) >= 0 ||
-				 (query != 'Others' && province.indexOf(query) >= 0) ||
-				 country.indexOf(query) >= 0){
-				var s = calculateStats(feature, true);
-				if(s.confirmed[s.confirmed.length - 1] + s.recovered[s.recovered.length - 1] + s.deaths[s.deaths.length - 1] == 0)
-					return;
-				if(country == 'United States'){
-					// country match
-					var matchLevel = 0;
-					if(admin2Query == query || admin2 == query.split(', ')[0])
-						// admin2 match
-						matchLevel = 2;
-					else if(provinceQuery == query || province == query.split(', ')[0])
-						// province match
-						matchLevel = 1;
-					// only admin2 records are displayed
-					if(admin2)
-						featureIds.push(featureId);
-					switch(matchLevel){
-					case 0: // country level
-						if(province || admin2)
-							return;
-						break;
-					case 1: // province level
-						if(admin2)
-							return;
-						break;
-					case 2: // admin2 level
-						if(province)
-							return;
-						break;
-					}
-				}else
-					featureIds.push(featureId);
-				if(stats.time.length == 0){
+	features.forEach(feature => {
+		var featureId = feature.id;
+		var country = feature.properties.country;
+		var province = feature.properties.province;
+		var admin2 = feature.properties.admin2;
+		var admin2Query = admin2 + ', ' + province + ', ' + country;
+		var provinceQuery = province + ', ' + country;
+		var coor = ol.proj.fromLonLat(feature.geometry.coordinates);
+		if(hasDuplicateData.indexOf(query) >= 0){
+			if(query == country){
+				if(!province){
+					var s = calculateStats(feature);
 					stats.lastUpdated = s.lastUpdated;
 					stats.time = s.time;
 					stats.confirmed = s.confirmed;
 					stats.recovered = s.recovered;
 					stats.deaths = s.deaths;
-				}else{
-					if(s.lastUpdated > stats.lastUpdated)
-						stats.lastUpdated = s.lastUpdated;
-					for(var i = stats.time.length - 1, j = s.time.length - 1; i >= 0 && j >= 0; i--, j--){
-						stats.confirmed[i] += s.confirmed[j];
-						stats.recovered[i] += s.recovered[j];
-						stats.deaths[i] += s.deaths[j];
-					}
-				}
-				ol.extent.extend(extent, [coor[0], coor[1], coor[0], coor[1]]);
+				}else
+				featureIds.push(featureId);
 			}
-		});
+		}else if(admin2Query == query || admin2Query.indexOf(query) >= 0 ||
+			provinceQuery == query || provinceQuery.indexOf(query) >= 0 ||
+			(query != 'Others' && province.indexOf(query) >= 0) ||
+			country.indexOf(query) >= 0){
+			var s = calculateStats(feature, true);
+			if(s.confirmed[s.confirmed.length - 1] + s.recovered[s.recovered.length - 1] + s.deaths[s.deaths.length - 1] == 0)
+				return;
+			if(country == 'United States'){
+					// country match
+					var matchLevel = 0;
+					if(admin2Query == query || admin2 == query.split(', ')[0])
+						// admin2 match
+					matchLevel = 2;
+					else if(provinceQuery == query || province == query.split(', ')[0])
+						// province match
+					matchLevel = 1;
+					// only admin2 records are displayed
+					if(admin2)
+						featureIds.push(featureId);
+					switch(matchLevel){
+					case 0: // country level
+					if(province || admin2)
+						return;
+					break;
+					case 1: // province level
+					if(admin2)
+						return;
+					break;
+					case 2: // admin2 level
+					if(province)
+						return;
+					break;
+				}
+			}else
+			featureIds.push(featureId);
+			if(stats.time.length == 0){
+				stats.lastUpdated = s.lastUpdated;
+				stats.time = s.time;
+				stats.confirmed = s.confirmed;
+				stats.recovered = s.recovered;
+				stats.deaths = s.deaths;
+			}else{
+				if(s.lastUpdated > stats.lastUpdated)
+					stats.lastUpdated = s.lastUpdated;
+				for(var i = stats.time.length - 1, j = s.time.length - 1; i >= 0 && j >= 0; i--, j--){
+					stats.confirmed[i] += s.confirmed[j];
+					stats.recovered[i] += s.recovered[j];
+					stats.deaths[i] += s.deaths[j];
+				}
+			}
+			ol.extent.extend(extent, [coor[0], coor[1], coor[0], coor[1]]);
+		}
+	});
 	if(featureIds.length){
 		window.location.hash = 'feature-' + featureIds[0];
 		highlightProvinceStats(featureIds);
@@ -909,7 +918,7 @@ var showFeatureStatsByQuery = function(query){
 					stats.province = province;
 					showPopup(stats, coor);
 				}else
-					console.log(status);
+				console.log(status);
 				view.fit(extent);
 			};
 			geocodeXhr.send();
@@ -955,9 +964,9 @@ var showGlobalStats = function(){
 		if((country == 'United States' && admin2) || (country != 'United States' && (hasDuplicateData.indexOf(country) < 0 || province))){
 			// country statistics
 			statsByProvince +=
-				'<div id="feature-' + featureId + '" class="stats-by-province">' +
-				'<div>' + createLinks(country, province, admin2, featureId, false) + '</div>' +
-				'<div onclick="showFeatureStatsById(' + featureId + ')">';
+			'<div id="feature-' + featureId + '" class="stats-by-province">' +
+			'<div>' + createLinks(country, province, admin2, featureId, false) + '</div>' +
+			'<div onclick="showFeatureStatsById(' + featureId + ')">';
 			if(lastConfirmed)
 				statsByProvince += '<div class="confirmed">' + lastConfirmed.toLocaleString() + ' confirmed</div>';
 			if(lastRecovered)
@@ -976,7 +985,7 @@ var showGlobalStats = function(){
 			if(country == 'United States' || hasDuplicateData.indexOf(country) >= 0)
 				return;
 		}else if(country == 'United States' && province)
-			return;
+		return;
 
 		// global statistics
 		if(updated > lastUpdated)
@@ -1183,22 +1192,22 @@ var sortStatsByCountry = function(category){
 	var nextCategory, a, b;
 	sortedByCountry.sort(function(a, b){
 		switch(category){
-		case 'Confirmed':
+			case 'Confirmed':
 			nextCategory = 'Recovered';
 			a = a.confirmed;
 			b = b.confirmed;
 			break;
-		case 'Recovered':
+			case 'Recovered':
 			nextCategory = 'Deaths';
 			a = a.recovered;
 			b = b.recovered;
 			break;
-		case 'Deaths':
+			case 'Deaths':
 			nextCategory = 'Active';
 			a = a.deaths;
 			b = b.deaths;
 			break;
-		case 'Active':
+			case 'Active':
 			nextCategory = 'Confirmed';
 			a = a.active;
 			b = b.active;
@@ -1207,21 +1216,21 @@ var sortStatsByCountry = function(category){
 		return sortDescending ? b - a : a - b;
 	});
 	countryLinksEl.innerHTML =
-		'<a onclick="sortDescending=!sortDescending;sortStatsByCountry(\'' + category + '\')"><span class="iconify" data-icon="icomoon-free:sort-amount-' + (sortDescending ? 'desc' : 'asc') + '"></span></a> ' +
-		'<a onclick="sortStatsByCountry(\'' + nextCategory + '\')">' + category + '</a>: ';
+	'<a onclick="sortDescending=!sortDescending;sortStatsByCountry(\'' + category + '\')"><span class="iconify" data-icon="icomoon-free:sort-amount-' + (sortDescending ? 'desc' : 'asc') + '"></span></a> ' +
+	'<a onclick="sortStatsByCountry(\'' + nextCategory + '\')">' + category + '</a>: ';
 	for(var i = 0; i < sortedByCountry.length; i++){
 		var country = sortedByCountry[i].country;
 		var backup = countryLinksEl.innerHTML;
 		var popup =
-			sortedByCountry[i].confirmed.toLocaleString() + ' confirmed, ' +
-			sortedByCountry[i].recovered.toLocaleString() + ' recovered, ' +
-			sortedByCountry[i].deaths.toLocaleString() + ' deaths, ' +
-			sortedByCountry[i].active.toLocaleString() + ' active'
+		sortedByCountry[i].confirmed.toLocaleString() + ' confirmed, ' +
+		sortedByCountry[i].recovered.toLocaleString() + ' recovered, ' +
+		sortedByCountry[i].deaths.toLocaleString() + ' deaths, ' +
+		sortedByCountry[i].active.toLocaleString() + ' active'
 		countryLinksEl.innerHTML += (i > 0 ? ', ' : '') +
-			'<a onclick="showFeatureStatsByQuery(\'' + country + '\')" title="' + popup + '">' + country + '</a>' +
-			'<sup><a href="?' + country.replace(/ /g, '%20') + '" title="' + popup + '">' +
-			'<span class="iconify" data-icon="fa:link"></span>' +
-			'</a></sup>';
+		'<a onclick="showFeatureStatsByQuery(\'' + country + '\')" title="' + popup + '">' + country + '</a>' +
+		'<sup><a href="?' + country.replace(/ /g, '%20') + '" title="' + popup + '">' +
+		'<span class="iconify" data-icon="fa:link"></span>' +
+		'</a></sup>';
 		if(countryLinksEl.offsetWidth > headerEl.offsetWidth - 10){
 			countryLinksEl.innerHTML = backup;
 			break;
@@ -1246,9 +1255,9 @@ xhr.onload = function(){
 			query = query[1].replace(/\+|%20/g, ' ').replace(/%22/g, '"');
 			showFeatureStatsByQuery(query);
 		}else
-			view.animate({center: ol.proj.fromLonLat(maxConfirmedCoor)});
+		view.animate({center: ol.proj.fromLonLat(maxConfirmedCoor)});
 	}else
-		console.log(status);
+	console.log(status);
 };
 xhr.send();
 </script>

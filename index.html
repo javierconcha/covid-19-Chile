@@ -2,11 +2,11 @@
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161613554-1"></script>
 	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
-	  gtag('config', 'UA-161613554-1');
+		gtag('config', 'UA-161613554-1');
 	</script>
 	<!--
 	Name:    index.html
@@ -30,9 +30,9 @@
 
 	You should have received a copy of the GNU Affero General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
-	-->
-	<html>
-	<head>
+-->
+<html>
+<head>
 	<title>Casos de COVID-19 en Chile (Beta Version)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,309 +44,309 @@
 	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 	<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
 	<style type="text/css">
-	html {
-		width: 100%;
-		height: 100%;
-	}
-	body {
-		width: calc(100% - 4px);
-		height: calc(100% - 4px);
-		margin: 0;
-		padding: 2px;
-		overflow: hidden;
-		font-family: sans-serif;
-		font-size: 0.69em;
-	}
-	a {
-		color: #0000cc;
-		text-decoration: none;
-	}
-	a:hover {
-		color: black;
-		text-decoration: underline;
-	}
-	h1 {
-		display: inline-block;
-		vertical-align: top;
-		width: calc(100% - 106px);
-		margin: 0;
-		font-size: 1.3em;
-		line-height: 1;
-	}
-	h2 {
-		font-size: 1.2em;
-		text-align: center;
-		margin: 0 0 0.1em 0;
-	}
-	h3 {
-		font-size: 1em;
-		margin: 0 0 2px 0;
-	}
-	.follow-me {
-		display: inline-block;
-		vertical-align: top;
-		width: 100px;
-		text-align: right;
-	}
-	.follow-me .author {
-		display: none;
-		font-size: 0.8em;
-	}
-	.follow-me .icons {
-		font-size: 1.5em;
-		line-height: 0;
-		margin: 0;
-	}
-	#header {
-		line-height: 1.3;
-	}
-	#legend {
-		text-align: right;
-		font-size: 0.8em;
-	}
-	#legend > .iconify {
-		font-size: 1.5em;
-		margin-bottom: -2px;
-	}
-	.desktop-block, .desktop-inline {
-		display: none;
-	}
-	#country-links-wrap {
-		font-size: 0.8em;
-	}
-	#map {
-		display: inline-block;
-	}
-	#info {
-		display: inline-block;
-		vertical-align: top;
-		width: 32%;
-		max-width: 300px;
-		font-size: 0.95em;
-	}
-	.highlighted {
-		background-color: #0000ff22;
-	}
-	#popup {
-		width: 140px;
-	}
-	#popup-last-updated {
-		text-align: right;
-		font-size: 0.9em;
-	}
-	#popup-stats {
-		width: 100%;
-		border-collapse: collapse;
-		font-weight: bold;
-	}
-	#summary {
-		font-size: 0.8em;
-	}
-	#last-updated-label {
-		display: none;
-		width: 0%;
-	}
-	#last-updated {
-		display: inline-block;
-		width: 100%;
-		text-align: right;
-	}
-	#global-stats {
-		width: 100%;
-		font-weight: bold;
-		font-size: 1.5em;
-		border-collapse: collapse;
-	}
-	.cfr {
-		font-weight: bold;
-	}
-	.right {
-		text-align: right;
-	}
-	.confirmed {
-		background-color: #00000055;
-	}
-	.recovered {
-		background-color: #00cc44;
-	}
-	.deaths {
-		background-color: #ff0000aa;
-	}
-	#plots {
-		margin-bottom: 0;
-	}
-	#stats-by-province {
-		overflow: auto;
-	}
-	.stats-by-province {
-		border-top: 1px solid black;
-		padding: 0;
-		font-size: 0.95em;
-		cursor: pointer;
-	}
-	.stats-by-province > div:nth-child(2) {
-		width: 100%;
-	}
-	.stats-by-province .province {
-		font-weight: bold;
-		margin-bottom: 0;
-	}
-	.stats-by-province .confirmed, .stats-by-province .recovered, .stats-by-province .deaths {
-		margin-left: 10px;
-		background-color: inherit;
-	}
-	.stats-by-province .confirmed {
-		color: black;
-	}
-	.stats-by-province .recovered {
-		color: green;
-	}
-	.stats-by-province .deaths {
-		color: red;
-	}
-	@media screen and (min-width: 640px) {
 		html {
+			width: 100%;
 			height: 100%;
 		}
 		body {
-			width: calc(100% - 10px);
-			height: calc(100% - 10px);
-			padding: 5px;
-			font-size: 1em;
+			width: calc(100% - 4px);
+			height: calc(100% - 4px);
+			margin: 0;
+			padding: 2px;
+			overflow: hidden;
+			font-family: sans-serif;
+			font-size: 0.69em;
+		}
+		a {
+			color: #0000cc;
+			text-decoration: none;
+		}
+		a:hover {
+			color: black;
+			text-decoration: underline;
 		}
 		h1 {
-			width: calc(75% - 6px);
-			font-size: 1.7em;
-		}
-		h2 {
-			font-size: 1.5em;
-			margin: 0 0 0.2em 0;
-		}
-		h3 {
-			margin: 0 0 5px 0;
-		}
-		.follow-me {
-			width: 25%;
-		}
-		.follow-me .author {
-			display: inline;
-		}
-		#header {
-			line-height: 1.5;
-		}
-		#legend > .iconify {
-			margin-bottom: -3px;
-		}
-		#info {
-			width: 25%;
-		}
-		.desktop-block {
-			display: block;
-		}
-		.desktop-inline {
-			display: inline;
-		}
-		.mobile-block, .mobile-inline {
-			display: none;
-		}
-		#popup {
-			width: 300px;
-		}
-		#summary {
-			font-size: 1em;
-		}
-		#last-updated-label {
-			display: inline-block;
-			width: 40%;
-		}
-		#last-updated {
-			width: 60%;
-		}
-		.cfr {
-			font-size: 1.2em;
-		}
-		.cfr sup {
-			font-size: 0.7em;
-		}
-		#plots {
-			margin-bottom: 10px;
-		}
-		#stats-by-province {
-			font-size: 0.9em;
-		}
-		.stats-by-province > div {
 			display: inline-block;
 			vertical-align: top;
+			width: calc(100% - 106px);
+			margin: 0;
+			font-size: 1.3em;
+			line-height: 1;
 		}
-		.stats-by-province > div:first-child {
-			width: 20px;
+		h2 {
+			font-size: 1.2em;
+			text-align: center;
+			margin: 0 0 0.1em 0;
 		}
-		.stats-by-province > div:nth-child(2) {
-			max-width: 250px;
+		h3 {
+			font-size: 1em;
+			margin: 0 0 2px 0;
+		}
+		.follow-me {
+			display: inline-block;
+			vertical-align: top;
+			width: 100px;
+			text-align: right;
+		}
+		.follow-me .author {
+			display: none;
+			font-size: 0.8em;
+		}
+		.follow-me .icons {
+			font-size: 1.5em;
+			line-height: 0;
+			margin: 0;
+		}
+		#header {
+			line-height: 1.3;
+		}
+		#legend {
+			text-align: right;
+			font-size: 0.8em;
+		}
+		#legend > .iconify {
+			font-size: 1.5em;
+			margin-bottom: -2px;
+		}
+		.desktop-block, .desktop-inline {
+			display: none;
+		}
+		#country-links-wrap {
+			font-size: 0.8em;
+		}
+		#map {
+			display: inline-block;
+		}
+		#info {
+			display: inline-block;
+			vertical-align: top;
+			width: 32%;
+			max-width: 300px;
+			font-size: 0.95em;
+		}
+		.highlighted {
+			background-color: #0000ff22;
+		}
+		#popup {
+			width: 140px;
+		}
+		#popup-last-updated {
+			text-align: right;
+			font-size: 0.9em;
+		}
+		#popup-stats {
+			width: 100%;
+			border-collapse: collapse;
+			font-weight: bold;
+		}
+		#summary {
+			font-size: 0.8em;
+		}
+		#last-updated-label {
+			display: none;
+			width: 0%;
+		}
+		#last-updated {
+			display: inline-block;
+			width: 100%;
+			text-align: right;
+		}
+		#global-stats {
+			width: 100%;
+			font-weight: bold;
+			font-size: 1.5em;
+			border-collapse: collapse;
+		}
+		.cfr {
+			font-weight: bold;
+		}
+		.right {
+			text-align: right;
+		}
+		.confirmed {
+			background-color: #00000055;
+		}
+		.recovered {
+			background-color: #00cc44;
+		}
+		.deaths {
+			background-color: #ff0000aa;
+		}
+		#plots {
+			margin-bottom: 0;
+		}
+		#stats-by-province {
+			overflow: auto;
 		}
 		.stats-by-province {
-			padding: 5px;
+			border-top: 1px solid black;
+			padding: 0;
+			font-size: 0.95em;
+			cursor: pointer;
+		}
+		.stats-by-province > div:nth-child(2) {
+			width: 100%;
 		}
 		.stats-by-province .province {
-			margin-bottom: 5px;
+			font-weight: bold;
+			margin-bottom: 0;
 		}
-		.ol-attribution {
-			font-size: 0.7em;
+		.stats-by-province .confirmed, .stats-by-province .recovered, .stats-by-province .deaths {
+			margin-left: 10px;
+			background-color: inherit;
 		}
-	}
+		.stats-by-province .confirmed {
+			color: black;
+		}
+		.stats-by-province .recovered {
+			color: green;
+		}
+		.stats-by-province .deaths {
+			color: red;
+		}
+		@media screen and (min-width: 640px) {
+			html {
+				height: 100%;
+			}
+			body {
+				width: calc(100% - 10px);
+				height: calc(100% - 10px);
+				padding: 5px;
+				font-size: 1em;
+			}
+			h1 {
+				width: calc(75% - 6px);
+				font-size: 1.7em;
+			}
+			h2 {
+				font-size: 1.5em;
+				margin: 0 0 0.2em 0;
+			}
+			h3 {
+				margin: 0 0 5px 0;
+			}
+			.follow-me {
+				width: 25%;
+			}
+			.follow-me .author {
+				display: inline;
+			}
+			#header {
+				line-height: 1.5;
+			}
+			#legend > .iconify {
+				margin-bottom: -3px;
+			}
+			#info {
+				width: 25%;
+			}
+			.desktop-block {
+				display: block;
+			}
+			.desktop-inline {
+				display: inline;
+			}
+			.mobile-block, .mobile-inline {
+				display: none;
+			}
+			#popup {
+				width: 300px;
+			}
+			#summary {
+				font-size: 1em;
+			}
+			#last-updated-label {
+				display: inline-block;
+				width: 40%;
+			}
+			#last-updated {
+				width: 60%;
+			}
+			.cfr {
+				font-size: 1.2em;
+			}
+			.cfr sup {
+				font-size: 0.7em;
+			}
+			#plots {
+				margin-bottom: 10px;
+			}
+			#stats-by-province {
+				font-size: 0.9em;
+			}
+			.stats-by-province > div {
+				display: inline-block;
+				vertical-align: top;
+			}
+			.stats-by-province > div:first-child {
+				width: 20px;
+			}
+			.stats-by-province > div:nth-child(2) {
+				max-width: 250px;
+			}
+			.stats-by-province {
+				padding: 5px;
+			}
+			.stats-by-province .province {
+				margin-bottom: 5px;
+			}
+			.ol-attribution {
+				font-size: 0.7em;
+			}
+		}
 	</style>
-	</head>
-	<body>
+</head>
+<body>
 	<div id="header">
-	<h1>Casos de COVID-19 en Chile (Beta Version)</h1>
-	<div class="follow-me">
-	<div class="icons">
-	<a href="https://github.com/javierconcha/covid-19-Chile"><span class="iconify" data-icon="fa-solid:code-branch"></span></a>
-	<a href="https://github.com/javierconcha"><span class="iconify" data-icon="fa-brands:github"></span></a>
-	<a href="https://twitter.com/javierconchas"><span class="iconify" data-icon="fa-brands:twitter"></span></a>
-	<a href="https://www.researchgate.net/profile/Javier_Concha"><span class="iconify" data-icon="fa-brands:researchgate"></span></a>
-	<a href="https://www.linkedin.com/in/javieralonsoconcha/"><span class="iconify" data-icon="fa-brands:linkedin"></span></a>
-	</div>
-	<div class="author">Creado por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a></div>
-	</div>
-	<div class="desktop-block">
-	Modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a>. Datos provistos por el <span id="data-sources"></span> y actualizados alrededor de las 11AM hora local.
-	<!-- All times are local except for plots in UTC. -->
+		<h1>Casos de COVID-19 en Chile (Beta Version)</h1>
+		<div class="follow-me">
+			<div class="icons">
+				<a href="https://github.com/javierconcha/covid-19-Chile"><span class="iconify" data-icon="fa-solid:code-branch"></span></a>
+				<a href="https://github.com/javierconcha"><span class="iconify" data-icon="fa-brands:github"></span></a>
+				<a href="https://twitter.com/javierconchas"><span class="iconify" data-icon="fa-brands:twitter"></span></a>
+				<a href="https://www.researchgate.net/profile/Javier_Concha"><span class="iconify" data-icon="fa-brands:researchgate"></span></a>
+				<a href="https://www.linkedin.com/in/javieralonsoconcha/"><span class="iconify" data-icon="fa-brands:linkedin"></span></a>
+			</div>
+			<div class="author">Creado por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a></div>
+		</div>
+		<div class="desktop-block">
+			Modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a>. Datos provistos por el <span id="data-sources"></span> y actualizados alrededor de las 11AM hora local.
+			<!-- All times are local except for plots in UTC. -->
 
-	¿No estas seguro si contrajiste el virus y necesitas el test? <a href="https://coronavirus.udec.cl/"> Haz click aquí.</a>
+			¿No estas seguro si contrajiste el virus y necesitas el test? <a href="https://coronavirus.udec.cl/"> Haz click aquí.</a>
 
-	Disclaimer: Este es un proyecto en desarrollo y de forma voluntaria. El autor no se hace responsable por los daños causados por esta página web. <a href="mailto:jaconcha@gmail.com">¿Sugerencias?</a>
-	</div>
-	<div class="mobile-block">
-	Modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a> por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a>. <a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Datos</a> actualizados alrededor de las 11AM hora local.
-	<!-- Local times except for plots in UTC. -->
-	<a href="https://coronavirus.udec.cl/">¿Necesito el test? </a>
-	<a href="mailto:jaconcha@gmail.com">¿Sugerencias?</a>
-	</div>
-	<div id="legend"><span class="iconify" data-icon="mdi:map-legend"></span> Confirmados: logarítmico, Otros: area proporcional a confirmados, Tasa Activos: opacidad</div>
-	<div id="country-links-wrap"><span class="iconify" data-icon="fa:flag"></span>&nbsp;<span id="country-links"></span></div>
+			Disclaimer: Este es un proyecto en desarrollo y de forma voluntaria. El autor no se hace responsable por los daños causados por esta página web. <a href="mailto:jaconcha@gmail.com">¿Sugerencias?</a>
+		</div>
+		<div class="mobile-block">
+			Modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a> por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a>. <a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Datos</a> actualizados alrededor de las 11AM hora local.
+			<!-- Local times except for plots in UTC. -->
+			<a href="https://coronavirus.udec.cl/">¿Necesito el test? </a>
+			<a href="mailto:jaconcha@gmail.com">¿Sugerencias?</a>
+		</div>
+		<div id="legend"><span class="iconify" data-icon="mdi:map-legend"></span> Confirmados: logarítmico, Otros: area proporcional a confirmados, Tasa Activos: opacidad</div>
+		<div id="country-links-wrap"><span class="iconify" data-icon="fa:flag"></span>&nbsp;<span id="country-links"></span></div>
 	</div>
 	<div id="map"></div>
 	<div id="info">
-	<div id="summary">
-	<h2>Total Chile</h2>
-	<div id="last-updated-label">Actualizado:</div><div id="last-updated"></div>
-	<table id="global-stats">
-	<tr class="confirmed"><td>Confirmados:</td><td id="total-confirmed" class="right"></td></tr>
-	<tr class="recovered"><td>Recuperados:</td><td id="total-recovered" class="right"></td></tr>
-	<tr class="deaths"><td>Fallecidos:</td><td id="total-deaths" class="right"></td></tr>
-	</table>
-	<div class="cfr">CFR<sup><a href="https://www.worldometers.info/coronavirus/coronavirus-death-rate/"><span class="iconify" data-icon="fa:external-link"></span></a></sup>: <span id="cfr"></span></div>
-	</div>
-	<div id="plots">
-	<div id="count-plot"></div>
-	<div id="cfr-plot"></div>
-	</div>
-	<div id="stats-by-province"></div>
+		<div id="summary">
+			<h2>Total Chile</h2>
+			<div id="last-updated-label">Actualizado:</div><div id="last-updated"></div>
+			<table id="global-stats">
+				<tr class="confirmed"><td>Confirmados:</td><td id="total-confirmed" class="right"></td></tr>
+				<tr class="recovered"><td>Recuperados:</td><td id="total-recovered" class="right"></td></tr>
+				<tr class="deaths"><td>Fallecidos:</td><td id="total-deaths" class="right"></td></tr>
+			</table>
+			<div class="cfr">CFR<sup><a href="https://www.worldometers.info/coronavirus/coronavirus-death-rate/"><span class="iconify" data-icon="fa:external-link"></span></a></sup>: <span id="cfr"></span></div>
+		</div>
+		<div id="plots">
+			<div id="count-plot"></div>
+			<div id="cfr-plot"></div>
+		</div>
+		<div id="stats-by-province"></div>
 	</div>
 	<script>
-	var dataUrl = 'geodata.json'
-	var dataSources = '<a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Ministerio de Salud de Chile</a>' +
+		var dataUrl = 'geodata.json'
+		var dataSources = '<a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Ministerio de Salud de Chile</a>' +
 		'';
 	// XXX: Add your Bing Maps key here and secure it from the Bing Maps Dev Center at https://www.bingmapsportal.com
 	var bingMapsKey = 'AhuHr9JixtsyKu9uSOQ8W0lIr7_gC2KiFxOlmshvRDb_BSWDkhnGX7oeS5zJzHo0';
@@ -410,39 +410,39 @@
 			var opacity = minOpacity + (maxOpacity - minOpacity) * (confirmed - recovered - deaths) / confirmed;
 			var strokeColor = 'rgba(85, 85, 85, ' + 2 * opacity + ')';
 			style = [
-				new ol.style.Style({
-					image: new ol.style.Circle({
-						radius: confirmedRadius,
-						fill: new ol.style.Fill({
-							color: getColor('confirmed', opacity)
-						}),
-						stroke: new ol.style.Stroke({
-							color: strokeColor
-						})
-					})
-				}),
-				new ol.style.Style({
-					image: new ol.style.Circle({
-						radius: recoveredRadius,
-						fill: new ol.style.Fill({
-							color: getColor('recovered', opacity)
-						}),
-						stroke: new ol.style.Stroke({
-							color: strokeColor
-						})
-					})
-				}),
-				new ol.style.Style({
-					image: new ol.style.Circle({
-						radius: deathsRadius,
-						fill: new ol.style.Fill({
-							color: getColor('deaths', 2 * opacity)
-						}),
-						stroke: new ol.style.Stroke({
-							color: strokeColor
-						})
+			new ol.style.Style({
+				image: new ol.style.Circle({
+					radius: confirmedRadius,
+					fill: new ol.style.Fill({
+						color: getColor('confirmed', opacity)
+					}),
+					stroke: new ol.style.Stroke({
+						color: strokeColor
 					})
 				})
+			}),
+			new ol.style.Style({
+				image: new ol.style.Circle({
+					radius: recoveredRadius,
+					fill: new ol.style.Fill({
+						color: getColor('recovered', opacity)
+					}),
+					stroke: new ol.style.Stroke({
+						color: strokeColor
+					})
+				})
+			}),
+			new ol.style.Style({
+				image: new ol.style.Circle({
+					radius: deathsRadius,
+					fill: new ol.style.Fill({
+						color: getColor('deaths', 2 * opacity)
+					}),
+					stroke: new ol.style.Stroke({
+						color: strokeColor
+					})
+				})
+			})
 			];
 		}else{
 			var data = [recovered, confirmed - recovered - deaths, deaths];
@@ -470,57 +470,57 @@
 		target: 'map',
 		controls: ol.control.defaults().extend([new ol.control.ScaleLine({units:'us'})]),
 		layers: [
+		new ol.layer.Group({
+			title: 'Base maps',
+			openInLayerSwitcher: true,
+			layers: [
 			new ol.layer.Group({
-				title: 'Base maps',
-				openInLayerSwitcher: true,
+				title: 'Water color',
+				baseLayer: true,
+				combine: true,
 				layers: [
-					new ol.layer.Group({
-						title: 'Water color',
-						baseLayer: true,
-						combine: true,
-						layers: [
-							new ol.layer.Tile({
-								title: 'Base map',
-								source: new ol.source.Stamen({
-									layer: 'watercolor'
-								})
-							}),
-							new ol.layer.Tile({
-								title: 'Labels',
-								source: new ol.source.Stamen({
-									layer: 'terrain-labels'
-								})
-							})
-						],
-						visible: false
-					}),
-					new ol.layer.Tile({
-						title: 'Bing aerial',
-						baseLayer: true,
-						source: new ol.source.BingMaps({
-							key: bingMapsKey,
-							imagerySet: 'AerialWithLabelsOnDemand',
-						}),
-						visible: false
-					}),
-					new ol.layer.Tile({
-						title: 'Open Street',
-						baseLayer: true,
-						source: new ol.source.OSM()
+				new ol.layer.Tile({
+					title: 'Base map',
+					source: new ol.source.Stamen({
+						layer: 'watercolor'
 					})
-				]
+				}),
+				new ol.layer.Tile({
+					title: 'Labels',
+					source: new ol.source.Stamen({
+						layer: 'terrain-labels'
+					})
+				})
+				],
+				visible: false
 			}),
-			new ol.layer.Vector({
-				title: 'COVID-19 cases',
-				source: new ol.source.Vector({
-					format: new ol.format.GeoJSON(),
-					url: dataUrl,
-                    attributions: '&copy; Data source: ' + dataSources
+			new ol.layer.Tile({
+				title: 'Bing aerial',
+				baseLayer: true,
+				source: new ol.source.BingMaps({
+					key: bingMapsKey,
+					imagerySet: 'AerialWithLabelsOnDemand',
+				}),
+				visible: false
 			}),
-				style: function(feature, resolution){
-					return createStyle(feature, resolution);
-				}
+			new ol.layer.Tile({
+				title: 'Open Street',
+				baseLayer: true,
+				source: new ol.source.OSM()
 			})
+			]
+		}),
+		new ol.layer.Vector({
+			title: 'COVID-19 cases',
+			source: new ol.source.Vector({
+				format: new ol.format.GeoJSON(),
+				url: dataUrl,
+				attributions: '&copy; Data source: ' + dataSources
+			}),
+			style: function(feature, resolution){
+				return createStyle(feature, resolution);
+			}
+		})
 		],
 		view: new ol.View({
 			center: ol.proj.fromLonLat([37.41, 8.82]),
@@ -614,16 +614,16 @@
 
 		var name = stats.province ? stats.province + ', ' + stats.country : stats.country;
 		var content =
-			'<div id="popup"><h3>' +
-			(stats.province ? '<a href="?' + name.replace(/ /g, '%20').replace(/"/g, '%22') + '">' + stats.province + '</a>, ' : '') +
-			'<a href="?' + stats.country.replace(/ /g, '%20') + '">' + stats.country + '</a></h3>' +
-			'<div id="popup-last-updated">' + new Date(lastUpdated).toLocaleString() + '</div>' +
-			'<table id="popup-stats">' +
-			(lastConfirmed ? '<tr class="confirmed"><td>Confirmados:</td><td class="right">' + lastConfirmed + '</td></tr>' : '') +
-			(lastRecovered ? '<tr class="recovered"><td>Recuperados:</td><td class="right">' + lastRecovered + '</td></tr>' : '') +
-			(lastDeaths ? '<tr class="deaths"><td>Fallecidos:</td><td class="right">' + lastDeaths + '</td></tr>' : '') +
-			'</table>' +
-			'<div id="popup-plot"></div></div>';
+		'<div id="popup"><h3>' +
+		(stats.province ? '<a href="?' + name.replace(/ /g, '%20').replace(/"/g, '%22') + '">' + stats.province + '</a>, ' : '') +
+		'<a href="?' + stats.country.replace(/ /g, '%20') + '">' + stats.country + '</a></h3>' +
+		'<div id="popup-last-updated">' + new Date(lastUpdated).toLocaleString() + '</div>' +
+		'<table id="popup-stats">' +
+		(lastConfirmed ? '<tr class="confirmed"><td>Confirmados:</td><td class="right">' + lastConfirmed + '</td></tr>' : '') +
+		(lastRecovered ? '<tr class="recovered"><td>Recuperados:</td><td class="right">' + lastRecovered + '</td></tr>' : '') +
+		(lastDeaths ? '<tr class="deaths"><td>Fallecidos:</td><td class="right">' + lastDeaths + '</td></tr>' : '') +
+		'</table>' +
+		'<div id="popup-plot"></div></div>';
 
 		popup.show(coor, content);
 
@@ -712,11 +712,11 @@
 			if(hasDuplicates.indexOf(country) < 0 || province){
 				var name = province ? province + ', ' + country : country;
 				statsByProvince += '<div id="feature-' + id + '" class="stats-by-province">' +
-					(isMobile ? '' :
-					 '<div>' + (province ? '<div><a href="?' + name.replace(/ /g, '%20').replace(/"/g, '%22') + '"><span class="iconify" data-icon="fa:link"></span></a></div>' : '') +
-					 '<div><a href="?' + country.replace(/ /g, '%20') + '"><span class="iconify" data-icon="fa:flag"></span></a></div></div>') +
-					'<div onclick="showFeatureStatsById(' + id + ')">' +
-					'<div class="province">' + name + '</div><div class="confirmed">' + lastConfirmed.toLocaleString() + ' confirmados</div>';
+				(isMobile ? '' :
+					'<div>' + (province ? '<div><a href="?' + name.replace(/ /g, '%20').replace(/"/g, '%22') + '"><span class="iconify" data-icon="fa:link"></span></a></div>' : '') +
+					'<div><a href="?' + country.replace(/ /g, '%20') + '"><span class="iconify" data-icon="fa:flag"></span></a></div></div>') +
+				'<div onclick="showFeatureStatsById(' + id + ')">' +
+				'<div class="province">' + name + '</div><div class="confirmed">' + lastConfirmed.toLocaleString() + ' confirmados</div>';
 				if(lastRecovered)
 					statsByProvince += '<div class="recovered">' + lastRecovered.toLocaleString() + ' recuperados</div>';
 				if(lastDeaths)
@@ -779,11 +779,11 @@
 			var country = sortedByCountry[i].country;
 			var backup = countryLinksEl.innerHTML;
 			countryLinksEl.innerHTML += (countryLinksEl.innerHTML ? ', ' : '') +
-				'<a href="?' + country.replace(/ /g, '%20') + '" title="' +
-				sortedByCountry[i].active.toLocaleString() + ' active, ' +
-				sortedByCountry[i].confirmed.toLocaleString() + ' confirmados, ' +
-				sortedByCountry[i].recovered.toLocaleString() + ' recuperados, ' +
-				sortedByCountry[i].deaths.toLocaleString() + ' fallecidos">' + country + '</a>';
+			'<a href="?' + country.replace(/ /g, '%20') + '" title="' +
+			sortedByCountry[i].active.toLocaleString() + ' active, ' +
+			sortedByCountry[i].confirmed.toLocaleString() + ' confirmados, ' +
+			sortedByCountry[i].recovered.toLocaleString() + ' recuperados, ' +
+			sortedByCountry[i].deaths.toLocaleString() + ' fallecidos">' + country + '</a>';
 			if(countryLinksEl.offsetHeight > singleLineHeight){
 				countryLinksEl.innerHTML = backup;
 				break;
@@ -907,14 +907,14 @@
 							stats.recovered = s.recovered;
 							stats.deaths = s.deaths;
 						}else
-							featureIds.push(id);
+						featureIds.push(id);
 					}
 				}else if(id == query - 1 ||
-				    id == features.length + Number(query) ||
-				    province + ', ' + country == query ||
-				    (province + ', ' + country).indexOf(query) >= 0 ||
-				    (query != 'Others' && province.indexOf(query) >= 0) ||
-				    country.indexOf(query) >= 0){
+					id == features.length + Number(query) ||
+					province + ', ' + country == query ||
+					(province + ', ' + country).indexOf(query) >= 0 ||
+					(query != 'Others' && province.indexOf(query) >= 0) ||
+					country.indexOf(query) >= 0){
 					var s = calculateStats(feature, true);
 					if(!s.confirmed[s.confirmed.length - 1])
 						return;
@@ -953,7 +953,7 @@
 						var q = query.split(', ');
 						geocodeUrl = 'https://dev.virtualearth.net/REST/v1/Locations?countryRegion=' + q[1] + '&adminDistrict=' + q[0] + '&key=' + bingMapsKey;
 					}else
-						geocodeUrl = 'https://dev.virtualearth.net/REST/v1/Locations?countryRegion=' + query + '&key=' + bingMapsKey;
+					geocodeUrl = 'https://dev.virtualearth.net/REST/v1/Locations?countryRegion=' + query + '&key=' + bingMapsKey;
 					var geocodeXhr = new XMLHttpRequest();
 					geocodeXhr.open('GET', geocodeUrl, true);
 					geocodeXhr.responseType = 'json';
@@ -968,7 +968,7 @@
 							stats.country = query;
 							showPopup(stats, coor);
 						}else
-							console.log(status);
+						console.log(status);
 						view.fit(extent);
 					};
 					geocodeXhr.send();
@@ -991,9 +991,9 @@
 				query = query[1].replace(/\+|%20/g, ' ').replace(/%22/g, '"');
 			showStats(features, query);
 		}else
-			console.log(status);
+		console.log(status);
 	};
 	xhr.send();
-	</script>
-	</body>
-	</html>
+</script>
+</body>
+</html>
