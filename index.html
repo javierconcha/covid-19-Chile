@@ -708,7 +708,7 @@ var showPopup = function(stats, coor){
 
 	var content =
 	'<div id="popup"><h3>' + createLinks(stats.country, stats.province, stats.admin2, stats.featureId, true) + '</h3>' +
-	'<div id="popup-last-updated">' + new Date(lastUpdated).toLocaleString() + '</div>' +
+	'<div id="popup-last-updated">' + new Date(lastUpdated).toLocaleString('en-GB') + '</div>' +
 	'<table id="popup-stats">' +
 	(lastConfirmed ? '<tr class="confirmed"><td>Confirmados:</td><td class="right">' + lastConfirmed + '</td></tr>' : '') +
 	(lastRecovered ? '<tr class="recovered"><td>Recuperados:</td><td class="right">' + lastRecovered + '</td></tr>' : '') +
@@ -1038,7 +1038,7 @@ var showGlobalStats = function(){
 	}
 
 	var lastIndex = time.length - 1;
-	lastUpdatedEl.innerHTML = new Date(lastUpdated).toLocaleString();
+	lastUpdatedEl.innerHTML = new Date(lastUpdated).toLocaleString('en-GB');
 	totalConfirmedEl.innerHTML = confirmedCount[lastIndex].toLocaleString();
 	totalRecoveredEl.innerHTML = recoveredCount[lastIndex].toLocaleString();
 	totalDeathsEl.innerHTML = deathsCount[lastIndex].toLocaleString();
