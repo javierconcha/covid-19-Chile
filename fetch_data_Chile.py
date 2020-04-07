@@ -26,6 +26,7 @@ import datetime
 import glob
 import os
 import subprocess
+from git import Repo
 
 import fetch_data_minsal
 path_main = '/Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile'
@@ -296,6 +297,20 @@ def send_to_server():
         print('geodata.json uploaded to server!')
 
 
+def git_push():
+    PATH_OF_GIT_REPO = os.path.join(path_main,'.git')  # make sure .git folder is properly configured
+    COMMIT_MESSAGE = 'Last update from Minsal.'
+    try:
+        repo = Repo(PATH_OF_GIT_REPO)
+        repo.git.add(path_main+'/data/*.csv')
+        repo.git.add(path_main+'/data.csv')
+        repo.git.add(path_main+'/geodata.json')
+        repo.index.commit(COMMIT_MESSAGE)
+        origin = repo.remote(name='origin')
+        origin.push()
+    except:
+        print('Some error occured while pushing the code')    
+
 
 #%%	MAIN
 if __name__ == '__main__':
@@ -311,6 +326,8 @@ if __name__ == '__main__':
         write_csv()    
     
         send_to_server()
+        
+        git_push()
     else:
     	print('Data not updated!')
 
