@@ -309,7 +309,15 @@ def git_push():
         origin = repo.remote(name='origin')
         origin.push()
     except:
-        print('Some error occured while pushing the code')    
+        print('Some error occured while pushing the code using GitPython')
+        cmd1 = 'git push origin master'
+        print('Trying: '+cmd1)
+        prog = subprocess.Popen(cmd1, shell=True,stderr=subprocess.PIPE)
+        out, err = prog.communicate()
+        if err:
+            print(err)
+        else:
+            print(out)
 
 
 #%%	MAIN
