@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import requests
 import re
 import datetime
+import pytz
 import os
 #%%
 def main():
@@ -80,14 +81,8 @@ def main():
     #%% today's date
     now = datetime.datetime.now()
     print('Today: '+str(now))
-    str_year = str(now.year)
-    str_month = str(now.month)
-    str_day = str(now.day)
-    if len(str_month) == 1:
-        str_month = '0'+str_month
-    if len(str_day)==1:
-        str_day = '0'+str_day
-    now_str =str_year+'-'+str_month+'-'+str_day
+    now_str = now.strftime("%Y-%m-%d")
+    print(now_str)
     
     if now_str == last_date_str: # if date in Minsal website is equal to today
         # fetch table with data
@@ -100,7 +95,10 @@ def main():
             flag_first = 1 # for the first element of the table from minsal, which is not useful
             
             country = 'Chile'
-            
+            # time in Chile
+            chile_now = pytz.utc.localize(datetime.datetime.utcnow()).astimezone(pytz.timezone("America/Santiago"))
+            chile_now_str = chile_now.strftime("%Y-%m-%d %H:%M:%S")
+
             for m in matches:
                 print('---------------')
                 if flag_first == 1:
@@ -151,7 +149,7 @@ def main():
                     print('confirmed: '+str(confirmed))
                     print('recovered: '+str(recovered))
                     print('deaths: '+str(deaths))
-                    new_line = str_year+'-'+str_month+'-'+str_day+' 11:00:00-03:00,'+str(confirmed)\
+                    new_line = chile_now_str+'-03:00,'+str(confirmed)\
                         +','+str(recovered)+','+str(deaths)+'\n'
                     print(new_line)        
                     if not province == '':
