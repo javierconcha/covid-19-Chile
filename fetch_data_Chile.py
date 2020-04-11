@@ -27,9 +27,14 @@ import glob
 import os
 import subprocess
 from git import Repo
+import sys
 
 import fetch_data_minsal
-path_main = '/Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile'
+
+if sys.platform == 'darwin':
+    path_main = '/Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile'
+elif sys.platform == 'linux':
+    path_main = '/home/bfbrzn0q0yvx/projects/covid-19-Chile'
 
 #%%
 geodata_json = os.path.join(path_main,'geodata.json') # name for json data output
@@ -278,23 +283,44 @@ def write_csv():
                 f.write('\n')
 
 def send_to_server():
-    cmd1 = 'scp /Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile/data.csv bfbrzn0q0yvx@www.sci-solve.com:/home/bfbrzn0q0yvx/public_html/covid-19-Chile'
-    print(cmd1)
-    prog = subprocess.Popen(cmd1, shell=True,stderr=subprocess.PIPE)
-    out, err = prog.communicate()
-    if err:
-        print(err)
-    else:
-        print('data.csv uploaded to server!')
 
-    cmd2 = 'scp /Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile/geodata.json bfbrzn0q0yvx@www.sci-solve.com:/home/bfbrzn0q0yvx/public_html/covid-19-Chile'                
-    print(cmd2)
-    prog = subprocess.Popen(cmd2, shell=True,stderr=subprocess.PIPE)
-    out, err = prog.communicate()
-    if err:
-        print(err)
-    else:
-        print('geodata.json uploaded to server!')
+    if sys.platform == 'darwin': # for Mac
+        cmd1 = 'scp '+path_main+'/data.csv bfbrzn0q0yvx@www.sci-solve.com:/home/bfbrzn0q0yvx/public_html/covid-19-Chile'
+        print(cmd1)
+        prog = subprocess.Popen(cmd1, shell=True,stderr=subprocess.PIPE)
+        out, err = prog.communicate()
+        if err:
+            print(err)
+        else:
+            print('data.csv uploaded to server!')
+
+        cmd2 = 'scp '+path_main+'/geodata.json bfbrzn0q0yvx@www.sci-solve.com:/home/bfbrzn0q0yvx/public_html/covid-19-Chile'                
+        print(cmd2)
+        prog = subprocess.Popen(cmd2, shell=True,stderr=subprocess.PIPE)
+        out, err = prog.communicate()
+        if err:
+            print(err)
+        else:
+            print('geodata.json uploaded to server!')
+
+    elif sys.platform == 'linux': # in the server
+        cmd1 = 'cp '+path_main+'/data.csv /home/bfbrzn0q0yvx/public_html/covid-19-Chile'
+        print(cmd1)
+        prog = subprocess.Popen(cmd1, shell=True,stderr=subprocess.PIPE)
+        out, err = prog.communicate()
+        if err:
+            print(err)
+        else:
+            print('data.csv uploaded to server!')
+
+        cmd2 = 'cp '+path_main+'/geodata.json /home/bfbrzn0q0yvx/public_html/covid-19-Chile'                
+        print(cmd2)
+        prog = subprocess.Popen(cmd2, shell=True,stderr=subprocess.PIPE)
+        out, err = prog.communicate()
+        if err:
+            print(err)
+        else:
+            print('geodata.json uploaded to server!')
 
 
 def git_push():
@@ -310,7 +336,7 @@ def git_push():
         origin.push()
     except:
         print('Some error occured while pushing the code using GitPython')
-        cmd1 = 'git push origin master'
+        cmd1 = 'git -C '+path_main+' push origin master'
         print('Trying: '+cmd1)
         prog = subprocess.Popen(cmd1, shell=True,stderr=subprocess.PIPE)
         out, err = prog.communicate()

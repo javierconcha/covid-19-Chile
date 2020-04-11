@@ -25,6 +25,7 @@ import re
 import datetime
 import pytz
 import os
+import sys
 #%%
 def main():
     # def fetch_data_from_minsal():
@@ -35,7 +36,12 @@ def main():
     date_last_update_re = 'Informe corresponde al (.*?)[^>]*\.'
     res = requests.get(minsal_url)
 
-    path_main = '/Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile'
+    # to import brdf_mario.py
+    if sys.platform == 'darwin':
+        path_main = '/Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile'
+    elif sys.platform == 'linux':
+        path_main = '/home/bfbrzn0q0yvx/projects/covid-19-Chile'
+    
     
     #%% get last update date
     print('--------------')
