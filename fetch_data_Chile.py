@@ -1,4 +1,4 @@
-#!/Users/javier.concha/opt/anaconda3/bin/python
+#!/usr/bin/env python3
 # coding: utf-8
 """
 Created on Thu Mar 26 11:58:01 2020
