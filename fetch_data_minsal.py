@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/home/bfbrzn0q0yvx/.local/bin/python3
 # coding: utf-8
 """
 Created on Sun Mar 29 13:45:50 2020

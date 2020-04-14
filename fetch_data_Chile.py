@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/home/bfbrzn0q0yvx/.local/bin/python3
 # coding: utf-8
 """
 Created on Thu Mar 26 11:58:01 2020
@@ -350,7 +350,7 @@ def git_push():
 if __name__ == '__main__':
 
     if fetch_data_minsal.main():
-    # if True: 	
+#    if True: 	
         merge_data()
     
         sort_data()
