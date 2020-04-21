@@ -328,7 +328,7 @@ def git_push():
     COMMIT_MESSAGE = 'Last update from Minsal.'
     try:
         repo = Repo(PATH_OF_GIT_REPO)
-        repo.git.add(path_main+'/data/*.csv')
+        repo.git.add(path_main+'/data/')
         repo.git.add(path_main+'/data.csv')
         repo.git.add(path_main+'/geodata.json')
         repo.index.commit(COMMIT_MESSAGE)
