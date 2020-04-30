@@ -45,7 +45,7 @@ def main():
     date_last_update_re = 'Informe corresponde al (.*?)[^>]*\.'
     res = requests.get(minsal_url)
 
-    # to import brdf_mario.py
+    # paths depending of the OS. Local or server.
     if sys.platform == 'darwin':
         path_main = '/Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile'
     elif sys.platform == 'linux':
@@ -115,7 +115,7 @@ def main():
                 print('---------------')
                 if not m[1][0:8] == '<strong>':
                     province = m[1]
-                    confirmed = int(replace_sym(m[3]))+int(replace_sym(m[4]))
+                    confirmed = int(replace_sym(m[2]))
                     deaths = int(replace_sym(m[6]))
                     recovered = 0
                     # change special characters to write csv data
@@ -141,7 +141,7 @@ def main():
                         province = 'Aysen'                  
                 else:
                     province = '' # for Chile.csv
-                    confirmed = int(m[3].replace('.', '').split('>')[1].split('<')[0])+int(m[4].replace('.', '').split('>')[1].split('<')[0])
+                    confirmed = int(m[2].replace('.', '').split('>')[1].split('<')[0])
                     deaths = int(m[6].replace('.', '').split('>')[1].split('<')[0])
         
                     # fetch total recovered from minsal website
