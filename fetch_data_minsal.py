@@ -40,8 +40,8 @@ def main():
     # def fetch_data_from_minsal():
     minsal_url = 'https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/'
     minsal_re = '<tr[^<]*>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>'
-    # actives_re = 'Casos recuperados a nivel nacional [\w-]*<\/strong><\/td>[^<]*<td[^<]*><strong>(.*?)<\/strong><\/td>'
-    actives_re = 'px;"><strong>(.*\d)</strong></td>'
+    # actives_minsal_re = 'Casos recuperados a nivel nacional [\w-]*<\/strong><\/td>[^<]*<td[^<]*><strong>(.*?)<\/strong><\/td>'
+    actives_minsal_re = 'px;"><strong>(.*\d)</strong></td>'
     date_last_update_re = 'Informe corresponde al (.*?)[^>]*\.'
     res = requests.get(minsal_url)
 
@@ -117,7 +117,7 @@ def main():
                     province = m[1]
                     confirmed = int(replace_sym(m[2]))
                     deaths = int(replace_sym(m[6]))
-                    actives = 0
+                    actives_minsal = 0
                     # change special characters to write csv data
                     if province[0:3] == 'Ari':
                         province = 'Arica y Parinacota'
@@ -144,22 +144,22 @@ def main():
                     confirmed = int(m[2].replace('.', '').split('>')[1].split('<')[0])
                     deaths = int(m[6].replace('.', '').split('>')[1].split('<')[0])
         
-                    # fetch total actives from minsal website
-                    if not re.search(actives_re, res.text):
-                        print('Match NOT found for actives from Minsal website!')
+                    # fetch total actives_minsal from minsal website
+                    if not re.search(actives_minsal_re, res.text):
+                        print('Match NOT found for actives_minsal from Minsal website!')
                     else:
-                        print('Match FOUND for actives from Minsal website!')
-                        match_actives = re.finditer(actives_re, res.text)
-                        for match in match_actives:
-                            actives = int(match[1].replace('.', ''))         
+                        print('Match FOUND for actives_minsal from Minsal website!')
+                        match_actives_minsal = re.finditer(actives_minsal_re, res.text)
+                        for match in match_actives_minsal:
+                            actives_minsal = int(match[1].replace('.', ''))         
 
                 print('country :' +country)
                 print('province: '+province)
                 print('confirmed: '+str(confirmed))
-                print('actives: '+str(actives))
+                print('actives_minsal: '+str(actives_minsal))
                 print('deaths: '+str(deaths))
                 new_line = chile_now_str+'-03:00,'+str(confirmed)\
-                    +','+str(confirmed-deaths-actives)+','+str(deaths)+'\n'
+                    +','+str(confirmed-deaths-actives_minsal)+','+str(deaths)+'\n'
                 print(new_line)        
                 if not province == '':
                     csv_file = province+', '+country+'.csv'
