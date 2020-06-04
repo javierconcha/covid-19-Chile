@@ -30,7 +30,7 @@ from git import Repo
 import sys
 import argparse
 parser = argparse.ArgumentParser(description="To force execute without checking Minsal website")
-parser.add_argument('action', help='The action to take (e.g. install, remove, etc.)')
+parser.add_argument('-f','--force',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
 args = parser.parse_args()
 
 
@@ -354,7 +354,7 @@ def git_push():
 #%%	MAIN
 if __name__ == '__main__':
 
-    if fetch_data_minsal.main() or args.action == '-f':
+    if fetch_data_minsal.main() or args.force:
 #    if True: 	
         merge_data()
     
