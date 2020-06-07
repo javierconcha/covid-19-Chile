@@ -158,12 +158,13 @@ def main():
                 print('confirmed: '+str(confirmed))
                 print('actives_minsal: '+str(actives_minsal))
                 print('deaths: '+str(deaths))
-                new_line = chile_now_str+'-03:00,'+str(confirmed)\
-                    +','+str(confirmed-deaths-actives_minsal)+','+str(deaths)+'\n'
-                print(new_line)        
-                if not province == '':
+                if not province == '':#Chile
+		    new_line = chile_now_str+'-03:00,'+str(confirmed)\
+                    	+','+str(confirmed-deaths-actives_minsal)+','+str(deaths)+'\n'
                     csv_file = province+', '+country+'.csv'
                 else:
+		    new_line = chile_now_str+'-03:00,'+str(confirmed)\
+                    	+',0,'+str(deaths)+'\n'
                     csv_file = country+'.csv' 
                 path2csv = os.path.join(path_main,'data',csv_file)
                 # write csv file
