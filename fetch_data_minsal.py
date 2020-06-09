@@ -26,6 +26,7 @@ import datetime
 import pytz
 import os
 import sys
+import argparse
 parser = argparse.ArgumentParser(description="To force execute without checking date in minsal website.")
 parser.add_argument('-f','--force',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
 args = parser.parse_args()
