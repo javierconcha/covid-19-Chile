@@ -28,7 +28,7 @@ import os
 import sys
 import argparse
 parser = argparse.ArgumentParser(description="To force execute without checking date in minsal website.")
-parser.add_argument('-f','--force',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
+parser.add_argument('-f2','--force2',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
 args = parser.parse_args()
 
 # parser = argparse.ArgumentParser(description='Pull data from website of the "Ministerio de Salud de Chile" (Minsal).')
@@ -102,7 +102,7 @@ def main():
     now_str = now.strftime("%Y-%m-%d")
     print(f"Today's date is: {now_str}")
     
-    if now_str == last_date_str or args.force: # if date in Minsal website is equal to today
+    if now_str == last_date_str or args.force2: # if date in Minsal website is equal to today
         #%% fetch table with data
         if not re.search(minsal_re, res.text):
             print('Match NOT found for table from Minsal website')
