@@ -119,7 +119,7 @@ def main():
                 if not m[1][0:8] == '<strong>':
                     province = m[1]
                     confirmed = int(replace_sym(m[2]))
-                    deaths = int(replace_sym(m[6]))
+                    deaths = int(replace_sym(m[7]))
                     actives_minsal = 0
                     # change special characters to write csv data
                     if province[0:3] == 'Ari':
