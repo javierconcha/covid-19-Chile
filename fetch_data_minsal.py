@@ -145,7 +145,7 @@ def main():
                 else:
                     province = '' # for Chile.csv
                     confirmed = int(m[2].replace('.', '').split('>')[1].split('<')[0])
-                    deaths = int(m[6].replace('.', '').split('>')[1].split('<')[0])
+                    deaths = int(m[7].replace('.', '').split('>')[1].split('<')[0])
         
                     # fetch total actives_minsal from minsal website
                     if not re.search(actives_minsal_re, res.text):
