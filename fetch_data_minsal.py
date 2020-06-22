@@ -119,7 +119,7 @@ def main():
                 if not m[1][0:8] == '<strong>':
                     province = m[1]
                     confirmed = int(replace_sym(m[2]))
-                    deaths = int(replace_sym(m[8]))
+                    deaths = int(replace_sym(m[7]))
                     actives_minsal = 0
                     # change special characters to write csv data
                     if province[0:3] == 'Ari':
@@ -145,7 +145,7 @@ def main():
                 else:
                     province = '' # for Chile.csv
                     confirmed = int(m[2].replace('.', '').split('>')[1].split('<')[0])
-                    deaths = int(m[8].replace('.', '').split('>')[1].split('<')[0])
+                    deaths = int(m[7].replace('.', '').split('>')[1].split('<')[0])
         
                     # fetch total actives_minsal from minsal website
                     if not re.search(actives_minsal_re, res.text):
