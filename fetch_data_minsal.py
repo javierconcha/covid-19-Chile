@@ -114,7 +114,7 @@ def main():
 
             for m in matches:
                 print('---------------')
-                if not m[1][0:8] == '<strong>' or m[1][0:2] == 'Se' :
+                if not m[1][0:8] == '<strong>' or not m[1][0:2] == 'Se' :
                     province = m[1]
                     confirmed = int(replace_sym(m[2]))
                     deaths = int(replace_sym(m[8]))
@@ -140,7 +140,7 @@ def main():
                         province = 'Los Lagos'    
                     elif province == 'Aysén':
                         province = 'Aysen'                  
-                else:
+                elif not m[1][0:2] == 'Se':
                     province = '' # for Chile.csv
                     confirmed = int(m[2].replace('.', '').split('>')[1].split('<')[0])
                     deaths = int(m[8].replace('.', '').split('>')[1].split('<')[0])
