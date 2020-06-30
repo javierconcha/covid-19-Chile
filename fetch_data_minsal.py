@@ -43,6 +43,7 @@ def main():
     # def fetch_data_from_minsal():
     minsal_url = 'https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/'
     minsal_re = '<tr[^<]*>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>'
+    minsal_Chile_re = '<tr[^<]*>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></strong></td>'
     date_last_update_re = 'Informe corresponde al (.*?)[^>]*\.'
     res = requests.get(minsal_url)
 
@@ -100,7 +101,7 @@ def main():
     now_str = now.strftime("%Y-%m-%d")
     print(f"Today's date is: {now_str}")
     
-    if now_str == last_date_str or args.force: # if date in Minsal website is equal to today
+    if now_str == last_date_str: # if date in Minsal website is equal to today
         #%% fetch table with data
         if not re.search(minsal_re, res.text):
             print('Match NOT found for table from Minsal website')
