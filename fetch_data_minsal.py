@@ -28,7 +28,7 @@ import os
 import sys
 import argparse
 parser = argparse.ArgumentParser(description="To force execute without checking date in minsal website.")
-parser.add_argument('-f2','--force2',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
+parser.add_argument('-f','--force',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
 args = parser.parse_args()
 
 # parser = argparse.ArgumentParser(description='Pull data from website of the "Ministerio de Salud de Chile" (Minsal).')
@@ -42,9 +42,7 @@ def replace_sym(str_to_replace):
 def main():
     # def fetch_data_from_minsal():
     minsal_url = 'https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/'
-    minsal_re = '<tr[^<]*>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>[^<]*<td[^<]*>(.*?)<\/td>'
-    # actives_minsal_re = 'Casos recuperados a nivel nacional [\w-]*<\/strong><\/td>[^<]*<td[^<]*><strong>(.*?)<\/strong><\/td>'
-    actives_minsal_re = 'px;"><strong>(.*\d)</strong></td>'
+    minsal_re = '<tr[^<]*>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>'
     date_last_update_re = 'Informe corresponde al (.*?)[^>]*\.'
     res = requests.get(minsal_url)
 
@@ -102,7 +100,7 @@ def main():
     now_str = now.strftime("%Y-%m-%d")
     print(f"Today's date is: {now_str}")
     
-    if now_str == last_date_str or args.force2: # if date in Minsal website is equal to today
+    if now_str == last_date_str or args.force: # if date in Minsal website is equal to today
         #%% fetch table with data
         if not re.search(minsal_re, res.text):
             print('Match NOT found for table from Minsal website')
@@ -116,11 +114,11 @@ def main():
 
             for m in matches:
                 print('---------------')
-                if not m[1][0:8] == '<strong>':
+                if not m[1][0:8] == '<strong>' or m[1][0:2] == 'Se' :
                     province = m[1]
                     confirmed = int(replace_sym(m[2]))
-                    deaths = int(replace_sym(m[7]))
-                    actives_minsal = 0
+                    deaths = int(replace_sym(m[8]))
+                    recovered = int(replace_sym(m[9]))
                     # change special characters to write csv data
                     if province[0:3] == 'Ari':
                         province = 'Arica y Parinacota'
@@ -145,27 +143,19 @@ def main():
                 else:
                     province = '' # for Chile.csv
                     confirmed = int(m[2].replace('.', '').split('>')[1].split('<')[0])
-                    deaths = int(m[7].replace('.', '').split('>')[1].split('<')[0])
-        
-                    # fetch total actives_minsal from minsal website
-                    if not re.search(actives_minsal_re, res.text):
-                        print('Match NOT found for actives_minsal from Minsal website!')
-                    else:
-                        print('Match FOUND for actives_minsal from Minsal website!')
-                        match_actives_minsal = re.finditer(actives_minsal_re, res.text)
-                        for match in match_actives_minsal:
-                            actives_minsal = int(match[1].replace('.', ''))         
+                    deaths = int(m[8].replace('.', '').split('>')[1].split('<')[0])
+                    recovered = int(m[9].replace('.', '').split('>')[1].split('<')[0])
 
                 print('country :' +country)
                 print('province: '+province)
                 print('confirmed: '+str(confirmed))
-                print('actives_minsal: '+str(actives_minsal))
+                print('recovered: '+str(recovered))
                 print('deaths: '+str(deaths))
                 if not province == '':#Chile
-                    new_line = chile_now_str+'-03:00,'+str(confirmed)+',0,'+str(deaths)+'\n'
+                    new_line = chile_now_str+'-03:00,'+str(confirmed)+','+str(recovered)+','+str(deaths)+'\n'
                     csv_file = province+', '+country+'.csv'
                 else:
-                    new_line = chile_now_str+'-03:00,'+str(confirmed)+','+str(confirmed-deaths-actives_minsal)+','+str(deaths)+'\n'
+                    new_line = chile_now_str+'-03:00,'+str(confirmed)+','+str(recovered)+','+str(deaths)+'\n'
                     csv_file = country+'.csv' 
                 path2csv = os.path.join(path_main,'data',csv_file)
                 # write csv file
