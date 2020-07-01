@@ -40,7 +40,7 @@ def replace_sym(str_to_replace):
     str_to_replace = str_to_replace.replace('*','')
     return str_to_replace
 
-def write_last_row(country,province,confirmed,recovered,deaths,path_main,chile_now_str):
+def write_last_row(country,province,confirmed,recovered,deaths,path_main,chile_now_str,now_str):
 
     if not province == '':#Chile
         new_line = chile_now_str+'-03:00,'+str(confirmed)+','+str(recovered)+','+str(deaths)+'\n'
@@ -176,7 +176,7 @@ def main():
                 elif province == 'Aysén':
                     province = 'Aysen' 
 
-                write_last_row(country,province,confirmed,recovered,deaths,path_main,chile_now_str)      
+                write_last_row(country,province,confirmed,recovered,deaths,path_main,chile_now_str,now_str)      
 
         #%% fetch table with data fro Chile
         if not re.search(minsal_Chile_re, res.text):
@@ -192,7 +192,7 @@ def main():
                 deaths = int(replace_sym(m[8]))
                 recovered = int(replace_sym(m[9]))
 
-                write_last_row(country,province,confirmed,recovered,deaths,path_main,chile_now_str)  
+                write_last_row(country,province,confirmed,recovered,deaths,path_main,chile_now_str,now_str)  
 
         flag_updated = True                
     else:
