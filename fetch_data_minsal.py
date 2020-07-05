@@ -150,35 +150,36 @@ def main():
             country = 'Chile'
 
             for m in matches:
-                province = m[1]
-                confirmed = int(replace_sym(m[2]))
-                deaths = int(replace_sym(m[8]))
-                recovered = int(replace_sym(m[9]))
-                # change special characters to write csv data
-                if province[0:3] == 'Ari':
-                    province = 'Arica y Parinacota'
-                elif province[0:3] == 'Tar':
-                    province = 'Tarapaca'
-                elif province[0:3] == 'Val':
-                    province = 'Valparaiso'
-                elif province[0] == 'O':
-                    province = 'OHiggins' 
-                elif province[1:] == 'uble':
-                    province = 'Nuble'
-                elif province[0:3] == 'Bio':
-                    province = 'Bio Bio'
-                elif province[0:3] == 'Ara':
-                    province = 'Araucania'
-                elif (province[0:3] == 'Los' and province[4] == 'R'):
-                    province = 'Los Rios'  
-                elif (province[0:3] == 'Los' and province[4] == 'L'):
-                    province = 'Los Lagos'    
-                elif province == 'Aysén':
-                    province = 'Aysen' 
+                if not m[1]=='Desconocida':
+                    province = m[1]
+                    confirmed = int(replace_sym(m[2]))
+                    deaths = int(replace_sym(m[8]))
+                    recovered = int(replace_sym(m[9]))
+                    # change special characters to write csv data
+                    if province[0:3] == 'Ari':
+                        province = 'Arica y Parinacota'
+                    elif province[0:3] == 'Tar':
+                        province = 'Tarapaca'
+                    elif province[0:3] == 'Val':
+                        province = 'Valparaiso'
+                    elif province[0] == 'O':
+                        province = 'OHiggins' 
+                    elif province[1:] == 'uble':
+                        province = 'Nuble'
+                    elif province[0:3] == 'Bio':
+                        province = 'Bio Bio'
+                    elif province[0:3] == 'Ara':
+                        province = 'Araucania'
+                    elif (province[0:3] == 'Los' and province[4] == 'R'):
+                        province = 'Los Rios'  
+                    elif (province[0:3] == 'Los' and province[4] == 'L'):
+                        province = 'Los Lagos'    
+                    elif province == 'Aysén':
+                        province = 'Aysen' 
 
-                write_last_row(country,province,confirmed,recovered,deaths,path_main,chile_now_str,now_str)      
+                    write_last_row(country,province,confirmed,recovered,deaths,path_main,chile_now_str,now_str)      
 
-        #%% fetch table with data fro Chile
+        #%% fetch table with data from Chile
         if not re.search(minsal_Chile_re, res.text):
             print('Match NOT found for table from Minsal website for Chile')
         else:    
