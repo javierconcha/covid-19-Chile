@@ -176,6 +176,8 @@ def main():
                         province = 'Los Lagos'    
                     elif province == 'Aysén':
                         province = 'Aysen' 
+                    elif province == 'RM':
+                        province = 'Metropolitana'
 
                     write_last_row(country,province,confirmed,recovered,deaths,path_main,chile_now_str,now_str)      
 
