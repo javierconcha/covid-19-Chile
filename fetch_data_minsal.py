@@ -26,6 +26,7 @@ import datetime
 import pytz
 import os
 import sys
+import pandas as pd
 import argparse
 parser = argparse.ArgumentParser(description="To force execute without checking date in minsal website.")
 parser.add_argument('-f2','--force2',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
@@ -33,60 +34,39 @@ parser.add_argument('-d2','--debug2',action='store_true' ,help='The action to ta
 args = parser.parse_args()
 
 # parser = argparse.ArgumentParser(description='Pull data from website of the "Ministerio de Salud de Chile" (Minsal).')
-
-
-def replace_sym(str_to_replace):
-    str_to_replace = str_to_replace.replace('.','')
-    str_to_replace = str_to_replace.replace('*','')
-    return str_to_replace
-
-def write_last_row(country,province,confirmed,recovered,deaths,path_main,chile_now_str,now_str):
-
-    if not province == '':#Chile
-        new_line = chile_now_str+'-03:00,'+str(confirmed)+','+str(recovered)+','+str(deaths)+'\n'
-        csv_file = province+', '+country+'.csv'
-    else:
-        new_line = chile_now_str+'-03:00,'+str(confirmed)+','+str(recovered)+','+str(deaths)+'\n'
-        csv_file = country+'.csv' 
-    path2csv = os.path.join(path_main,'data',csv_file)
-
-    print('------------------')
-    print('country :' +country)
-    print('province: '+province)
-    print('confirmed: '+str(confirmed))
-    print('recovered: '+str(recovered))
-    print('deaths: '+str(deaths)) 
-
-    if not args.debug2:
-        # write csv file
-        with open(path2csv, 'r+') as f:
-            lines = f.read().splitlines()
-            last_line = lines[-1]
-            print(last_line)
-            if now_str == last_line[:10]:
-                print('Same dates: '+now_str)
-                print('File NOT updated.')
-                if not province == '':
-                    return False
-            else:   
-                f.write(new_line)
-                print('File updated.')   
-
 #%%
 def main():
-    # def fetch_data_from_minsal():
-    minsal_url = 'https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/'
-    minsal_re = '<tr[^<]*>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>[^<]*<td[^<]*><[^<]*>(.*?)</span></td>'
-    minsal_Chile_re = '<tr[^<]*>[^<]*<td[^<]*><[^<]*><[^<]*>(.*?)</strong></span></td>[^<]*<td[^<]*><[^<]*><[^<]*>(.*?)</strong></span></td>[^<]*<td[^<]*><[^<]*><[^<]*>(.*?)</strong></span></td>[^<]*<td[^<]*><[^<]*><[^<]*>(.*?)</strong></span></td>[^<]*<td[^<]*><[^<]*><[^<]*>(.*?)</strong></span></td>[^<]*<td[^<]*><[^<]*><[^<]*>(.*?)</strong></span></td>[^<]*<td[^<]*><[^<]*><[^<]*>(.*?)</strong></span></td>[^<]*<td[^<]*><[^<]*><[^<]*>(.*?)</strong></span></td>[^<]*<td[^<]*><[^<]*><[^<]*>(.*?)</span></strong></td>'
-    date_last_update_re = 'Informe corresponde al (.*?)[^>]*\.'
-    res = requests.get(minsal_url)
 
+    url = 'https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto3/TotalesPorRegion.csv'
+    df = pd.read_csv(url, error_bad_lines=False)
+
+    province_list = ['Arica y Parinacota','Tarapacá','Antofagasta','Atacama','Coquimbo','Valparaíso','Metropolitana'\
+        ,'O’Higgins','Maule','Ñuble','Biobío','Araucanía','Los Ríos','Los Lagos','Aysén','Magallanes','Total']
+    province_dict = {
+        'Antofagasta':'Antofagasta',
+        'Araucanía':'Araucania','Araucania':'Araucania',
+        'Arica y Parinacota':'Arica y Parinacota',
+        'Atacama':'Atacama',
+        'Aysén':'Aysen','Aysen':'Aysen',
+        'Biobío':'Bio Bio','Biobio':'Bio Bio','Bio Bio':'Bio Bio',
+        'Coquimbo':'Coquimbo',
+        'Los Lagos':'Los Lagos',
+        'Los Ríos':'Los Rios','Los Rios':'Los Rios',
+        'Magallanes':'Magallanes',
+        'Maule':'Maule',
+        'Metropolitana':'Metropolitana',
+        'Ñuble':'Nuble','Nuble':'Nuble',
+        'O’Higgins':'OHiggins',"O'Higgins":'OHiggins',
+        'Tarapacá':'Tarapaca','Tarapaca':'Tarapaca',
+        'Valparaíso':'Valparaiso','Valparaiso':'Valparaiso'
+    }
     # paths depending of the OS. Local or server.
     if sys.platform == 'darwin':
         path_main = '/Users/javier.concha/Desktop/Javier/2020_COVID-19_CHILE/covid-19-Chile'
     elif sys.platform == 'linux':
         path_main = '/home/bfbrzn0q0yvx/projects/covid-19-Chile'
     
+<<<<<<< HEAD
     
     #%% get last update date
     print('--------------')
@@ -201,11 +181,53 @@ def main():
     else:
         print('Last date in website is yesterday ('+last_date_str+')!')  
         flag_updated = False      
+=======
+    for province in province_list:
+
+        # Example cvs file;
+        # time,confirmed,recovered,deaths
+        # 2020-03-01 11:00:00-03:00,0,0,0
+        # 2020-03-02 11:00:00-03:00,0,0,0
+
+        print('------------------')
+        print(province)
+        df_acumulados = df[(df['Region'] == province) & (df['Categoria'] == 'Casos acumulados')]
+        df_recuperados = df[((df['Region'] == province )|((df['Region'] == province.replace("’","'")))|((df['Region'] == province.replace("í","i")))) \
+            & (df['Categoria'] == 'Casos confirmados recuperados')]
+        df_fallecidos = df[(df['Region'] == province) & (df['Categoria'] == 'Fallecidos totales')]
+        df_all = pd.concat([df_acumulados,df_recuperados,df_fallecidos]).rename(columns={'Categoria': 'time'}).set_index('time').fillna(0)
+        df_all = df_all.T
+        df_all = df_all.rename(columns={'Casos acumulados': 'confirmed', 'Casos confirmados recuperados': 'recovered', 'Fallecidos totales': 'deaths'})
+        df_all = df_all.drop('Region',axis=0)
+        df_all = df_all.reset_index()
+        df_all = df_all.rename(columns={'index': 'time'})
+        df_all.index = df_all.index.rename('index')
+        df_all['confirmed'] = df_all['confirmed'].astype(int)
+        df_all['recovered'] = df_all['recovered'].astype(int)
+        df_all['deaths'] = df_all['deaths'].astype(int)
+
+        df_all['time'] = df_all['time'].astype(str) + ' 12:00:00-03:00'
+        date_github = df_all['time'].iloc[-1][:10]
+
+        if not province == 'Total':
+            csv_file = f'{province_dict[province]}, Chile.csv'
+            path_to_local = os.path.join(path_main,'data',csv_file)
+        else:
+            path_to_local = os.path.join(path_main,'data','Chile.csv')
+
+        df_local = pd.read_csv(path_to_local)
+        date_local = df_local['time'].iloc[-1][:10]
+
+        if date_github > date_local:
+            df_all.to_csv(path_to_local,index = False)
+            flag_updated = True
+        else:
+            print(f'Date in github ({date_github}) is the same as local ({date_local}). csv file {province} NOT changed!')
+            flag_updated = False
+>>>>>>> fromgithub
 
     return flag_updated                
     
 #%%     
 if __name__ == '__main__':
-   main()  
-
-            
+   main() 
