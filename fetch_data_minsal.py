@@ -28,6 +28,10 @@ import os
 import sys
 import pandas as pd
 import argparse
+# to fix SSL: CERTIFICATE_VERIFY_FAILED error
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
 parser = argparse.ArgumentParser(description="To force execute without checking date in minsal website.")
 parser.add_argument('-f2','--force2',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
 parser.add_argument('-d2','--debug2',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
