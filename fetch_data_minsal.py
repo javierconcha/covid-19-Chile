@@ -32,10 +32,10 @@ import argparse
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
-parser = argparse.ArgumentParser(description="To force execute without checking date in minsal website.")
-parser.add_argument('-f2','--force2',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
-parser.add_argument('-d2','--debug2',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
-args = parser.parse_args()
+# parser = argparse.ArgumentParser(description="To force execute without checking date in minsal website.")
+# parser.add_argument('-f2','--force2',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
+# parser.add_argument('-d2','--debug2',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
+# args = parser.parse_args()
 
 # parser = argparse.ArgumentParser(description='Pull data from website of the "Ministerio de Salud de Chile" (Minsal).')
 #%%
@@ -106,7 +106,7 @@ def main():
         df_local = pd.read_csv(path_to_local)
         date_local = df_local['time'].iloc[-1][:10]
 
-        if date_github > date_local or args.force2:
+        if date_github > date_local:
             df_all.to_csv(path_to_local,index = False)
             flag_updated = True
         else:

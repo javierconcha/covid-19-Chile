@@ -29,8 +29,11 @@ import subprocess
 from git import Repo
 import sys
 import argparse
-parser = argparse.ArgumentParser(description="To force execute without checking Minsal website")
-parser.add_argument('-f','--force',action='store_true' ,help='The action to take (e.g. install, remove, etc.)')
+parser = argparse.ArgumentParser(description="Create data to plot to in the index.html")
+parser.add_argument('-v','--verbose',action='store_true' ,help='Verbose mode')
+parser.add_argument('-f','--force',action='store_true' ,help='To force execute without checking Minsal website')
+parser.add_argument('-n','--noupload',action='store_true' ,help='No uploading to the server')
+
 args = parser.parse_args()
 
 
@@ -48,8 +51,6 @@ data_csv = os.path.join(path_main,'data.csv') # name to output csv
 data = [] 
 coors_json = os.path.join(path_main,'coors_Chile.json')
 has_duplicate_data = 'Chile'
-
-
 
 def geocode(country, province, latitude=None, longitude=None):
     # read existing data
@@ -101,7 +102,7 @@ def merge_data():
             recovered = rec['recovered']
             deaths = rec['deaths']
             index = len(confirmed) - 1
-            time_str = confirmed[index]['time']
+            time = confirmed[index]['time']
 
             path_file = os.path.join(path_main,filename[2:])
             print(path_file)
@@ -111,28 +112,27 @@ def merge_data():
                     pass
                 last_updated = datetime.datetime.fromisoformat(row[0]).\
                         astimezone(datetime.timezone.utc)
-                last_updated_str = f'{last_updated.strftime("%Y/%m/%d %H:%M:%S UTC")}'
-                if time_str > last_updated_str:
-                    last_updated_str = time_str
+                if time > last_updated:
+                    last_updated = time
                 c = int(row[1])
                 r = int(row[2])
                 d = int(row[3])
                 if c > confirmed[index]['count']:
                     print(f'data confirmed: {province}, {country}, {confirmed[index]["count"]} => {c}')
                     confirmed[index] = {
-                        'time': last_updated_str,
+                        'time': last_updated,
                         'count': c
                     }
                 if r > recovered[index]['count']:
                     print(f'data recovered: {province}, {country}, {recovered[index]["count"]} => {r}')
                     recovered[index] = {
-                        'time': last_updated_str,
+                        'time': last_updated,
                         'count': r
                     }
                 if d > deaths[index]['count']:
                     print(f'data deaths   : {province}, {country}, {deaths[index]["count"]} => {d}')
                     deaths[index] = {
-                        'time': last_updated_str,
+                        'time': last_updated,
                         'count': d
                     }
         else:
@@ -156,15 +156,15 @@ def merge_data():
                     r = int(row[2])
                     d = int(row[3])
                     confirmed.append({
-                        'time': time_str,
+                        'time': time,
                         'count': c
                     })
                     recovered.append({
-                        'time': time_str,
+                        'time': time,
                         'count': r
                     })
                     deaths.append({
-                        'time': time_str,
+                        'time': time,
                         'count': d
                     })
 
@@ -255,14 +255,20 @@ def write_geojson():
         'features': features
     }
 
+    def convert_time(x):
+        if isinstance(x, datetime.datetime):
+            return int(x.timestamp())
+
     with open(geodata_json, 'w') as f:
-        f.write(json.dumps(geodata))
+        f.write(json.dumps(geodata, default=convert_time))
+        if args.verbose:
+            print('geodata.json created.')
 
 def write_csv():
     with open(data_csv, 'w') as f:
         f.write('province,country,latitude,longitude,category')
         for x in data[0]['confirmed']:
-            date = x['time'].split(' ')[0].replace('/', '')
+            date = x['time'].strftime("%Y%m%d")
             f.write(f',utc_{date}')
         f.write('\n')
         for rec in data:
@@ -363,10 +369,10 @@ if __name__ == '__main__':
     
         write_geojson()
         write_csv()    
-    
-        send_to_server()
+        if not args.noupload:
+            send_to_server()
         
-        git_push()
+            git_push()
     else:
     	print('Data not updated!')
 
