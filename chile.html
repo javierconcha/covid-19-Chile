@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>Casos de COVID-19 en Chile</title>
+<meta charset="utf-8" />
+<!--
+Name:    index.html
+Purpose: This HTML file creates an interactive web map of COVID-19 cases using
+         data from the GitHub repository and REST API of Johns Hopkins CSSE,
+         DXY, KCDC, StatisticheCoronavirus, and Minsal.
+Author:  Huidae Cho
+Since:   February 2, 2020
+
+Copyright (C) 2020, Huidae Cho <https://idea.isnew.info>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="refresh" content="1800" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css" />
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js"></script>
+<link rel="stylesheet" href="https://cdn.rawgit.com/Viglino/ol-ext/master/dist/ol-ext.min.css" />
+<script type="text/javascript" src="https://cdn.rawgit.com/Viglino/ol-ext/master/dist/ol-ext.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
+<link rel="stylesheet" href="covid-19.css" />
+<script>
+/*******************************************************************************
+ * CONFIGURATION
+ ******************************************************************************/
+// XXX: Add your Bing Maps key here and secure it from the Bing Maps Dev Center
+// at https://www.bingmapsportal.com
+const bingMapsKey = 'AhuHr9JixtsyKu9uSOQ8W0lIr7_gC2KiFxOlmshvRDb_BSWDkhnGX7oeS5zJzHo0';
+const dataUrl = 'geodata.json'
+const dataSources = '<a href="https://arcg.is/0fHmTX">CSSE</a><sup><a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_daily_reports">1</a>' +
+	',<a href="https://services9.arcgis.com/N9p5hsImWXAccRNI/arcgis/rest/services/Nc2JKvYFoAEOFCG5JSI6/FeatureServer/1/query?where=1%3D1&outFields=*&f=json">2</a></sup>' +
+	', <a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Ministerio de Salud</a>' +
+	'';
+const mapUnits = 'metric';
+// median days from first symptom to death
+const averageDaysFromConfirmedToDeath = 14;
+const plotsMenuItems = [
+	'Cumulative',
+	'Increase',
+	'CFR',
+	'Confirmed',
+	'Recovered',
+	'Deaths',
+];
+const hasDuplicateData = [
+	'South Korea',
+	'Italy',
+	'Chile',
+];
+const countryToDisplay = 'Chile';
+
+// OPTIONAL TRANSLATION
+const words = {
+	'Data sources': 'Fuentes de datos',
+
+	'confirmed': 'confirmados',
+	'recovered': 'recuperados',
+	'deaths': 'fallecidos',
+	'death': 'fallecido', // singular
+	'active': 'activo',
+
+	'Confirmed': 'Confirmados',
+	'Recovered': 'Recuperados',
+	'Deaths': 'Fallecidos',
+	'Active': 'Activo',
+	'Cumulative': 'Acumulativo',
+	'Increase': 'Incremento',
+
+	'Others': 'Otros',
+};
+const getTextFunctions = {
+};
+/*******************************************************************************
+ * END OF CONFIGURATION
+ ******************************************************************************/
+</script>
+</head>
+<body>
+<div id="header">
+<h1>Casos de COVID-19 en Chile</h1>
+<span id="virus" class="iconify" data-icon="mdi:virus"></span>
+<div class="follow-me">
+<div class="icons">
+<a href="https://github.com/HuidaeCho/covid-19"><span class="iconify" data-icon="fa-solid:code-branch"></span></a>
+<a href="https://github.com/HuidaeCho"><span class="iconify" data-icon="fa-brands:github"></span></a>
+<a href="https://twitter.com/HuidaeCho"><span class="iconify" data-icon="fa-brands:twitter"></span></a>
+<a href="https://researchgate.net/profile/Huidae_Cho"><span class="iconify" data-icon="fa-brands:researchgate"></span></a>
+<a href="https://linkedin.com/in/HuidaeCho"><span class="iconify" data-icon="fa-brands:linkedin"></span></a>
+</div>
+<div class="author">Desde el 2 de febrero de 2020 por <a href="https://idea.isnew.info">Huidae Cho</a></div>
+</div>
+<div class="desktop-block">
+Este mapa web de código abierto fue motivado por <a href="https://arcg.is/0fHmTX">el sitio web de casos globales de COVID-19</a> de <a href="https://systems.jhu.edu">Johns Hopkins CSSE</a>.
+Los datos se obtienen cada 30 minutos.
+El autor no se hace responsable por los daños causados por el uso de este sitio web.
+<a href="https://github.com/HuidaeCho/covid-19/issues">¿Sugerencias?</a>
+</div>
+<div class="mobile-block">
+Motivado por <a href="https://arcg.is/1DPOWm0">el sitio web de JHU CSSE</a>.
+<a href="https://github.com/HuidaeCho/covid-19/blob/master/README.md#disclaimer">¡Descargo de responsabilidad!</a>
+<a href="https://github.com/HuidaeCho/covid-19/issues">¿Sugerencias?</a>
+</div>
+<div id="legend"><span class="iconify" data-icon="mdi:map-legend"></span> Confirmados: logarítmico. Otros: area proporcional a confirmados. Tasa Activos: opacidad.</div>
+<div id="country-links-wrap"><span id="country-links">&nbsp;</span></div>
+</div>
+<div id="map"></div>
+<div id="info">
+<div id="summary">
+<h2>Chile Total</h2>
+<div id="last-updated-label">Actualización:</div><div id="last-updated"></div>
+<table id="global-stats">
+<tr class="confirmed"><td>Confirmados:</td><td id="total-confirmed" class="numeric"></td></tr>
+<tr class="recovered"><td>Recuperados:</td><td id="total-recovered" class="numeric"></td></tr>
+<tr class="deaths"><td>Fallecidos:</td><td id="total-deaths" class="numeric"></td></tr>
+</table>
+<div class="cfr">CFR<sup><a href="https://www.worldometers.info/coronavirus/coronavirus-death-rate/"><span class="iconify" data-icon="fa:external-link"></span></a></sup>: <span id="cfr"></span></div>
+</div>
+<div id="plots">
+<div id="plots-menu" class="plots-menu"></div>
+<div id="plot"></div>
+</div>
+<div id="stats-by-province"></div>
+</div>
+<script src="covid-19.js"></script>
+</body>
+</html>
