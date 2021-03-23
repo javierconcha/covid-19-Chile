@@ -92,33 +92,39 @@ const getTextFunctions = {
 </script>
 </head>
 <body>
-<div id="header">
-<h1>Casos de COVID-19 en Chile (V3.0)</h1>
-<span id="virus" class="iconify" data-icon="mdi:virus"></span>
-<div class="follow-me">
-<div class="icons">
-<a href="https://github.com/HuidaeCho/covid-19"><span class="iconify" data-icon="fa-solid:code-branch"></span></a>
-<a href="https://github.com/HuidaeCho"><span class="iconify" data-icon="fa-brands:github"></span></a>
-<a href="https://twitter.com/HuidaeCho"><span class="iconify" data-icon="fa-brands:twitter"></span></a>
-<a href="https://researchgate.net/profile/Huidae_Cho"><span class="iconify" data-icon="fa-brands:researchgate"></span></a>
-<a href="https://linkedin.com/in/HuidaeCho"><span class="iconify" data-icon="fa-brands:linkedin"></span></a>
-</div>
-<div class="author">Desde el 2 de febrero de 2020 por <a href="https://idea.isnew.info">Huidae Cho</a></div>
-</div>
-<div class="desktop-block">
-Este mapa web de código abierto fue motivado por <a href="https://arcg.is/0fHmTX">el sitio web de casos globales de COVID-19</a> de <a href="https://systems.jhu.edu">Johns Hopkins CSSE</a>.
-Los datos se obtienen cada 30 minutos.
-El autor no se hace responsable por los daños causados por el uso de este sitio web.
-<a href="https://github.com/HuidaeCho/covid-19/issues">¿Sugerencias?</a>
-</div>
-<div class="mobile-block">
-Motivado por <a href="https://arcg.is/1DPOWm0">el sitio web de JHU CSSE</a>.
-<a href="https://github.com/HuidaeCho/covid-19/blob/master/README.md#disclaimer">¡Descargo de responsabilidad!</a>
-<a href="https://github.com/HuidaeCho/covid-19/issues">¿Sugerencias?</a>
-</div>
-<div id="legend"><span class="iconify" data-icon="mdi:map-legend"></span> Confirmados: logarítmico. Otros: area proporcional a confirmados. Tasa Activos: opacidad.</div>
-<div id="country-links-wrap"><span id="country-links">&nbsp;</span></div>
-</div>
+	<div id="header">
+		<h1>COVID-19 en Chile (V3.0)</h1>
+		<!-- <span id="virus" class="iconify" data-icon="mdi:virus"></span> -->
+		<div class="follow-me">
+			<div class="icons">
+				<a href="https://github.com/javierconcha/covid-19-Chile"><span class="iconify" data-icon="fa-solid:code-branch"></span></a>
+				<a href="https://github.com/javierconcha"><span class="iconify" data-icon="fa-brands:github"></span></a>
+				<a href="https://twitter.com/javierconchas"><span class="iconify" data-icon="fa-brands:twitter"></span></a>
+				<a href="https://www.researchgate.net/profile/Javier_Concha"><span class="iconify" data-icon="fa-brands:researchgate"></span></a>
+				<a href="https://www.linkedin.com/in/javieralonsoconcha/"><span class="iconify" data-icon="fa-brands:linkedin"></span></a>
+			</div>
+			<div class="author">Creado por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a></div>
+		</div>
+		<div class="desktop-block">
+			Modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a>. Datos provistos por el <span id="data-sources"></span> y actualizados alrededor de las 11AM hora local.
+			<!-- All times are local except for plots in UTC. -->
+
+			¿No estas seguro si contrajiste el virus y necesitas el test? <a href="https://coronavirus.udec.cl/"> Haz click aquí.</a>
+
+			Disclaimer: Este es un proyecto en desarrollo y de forma voluntaria. El autor no se hace responsable por los daños causados por esta página web. <a href="mailto:jaconcha@gmail.com">¿Sugerencias?</a>
+		</div>
+		<div class="mobile-block">
+			<p style="font-size:13px"> 
+				Modificado de este <a href="https://app.isnew.info/covid-19/">mapa del Covid-19</a> por <a href="https://sites.google.com/view/javierconcha">Javier A. Concha</a>. <a href="https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/">Datos</a> actualizados alrededor de las 11AM hora local.
+				<!-- Local times except for plots in UTC. -->
+				<a href="https://coronavirus.udec.cl/">¿Necesito el test? </a>
+				<!-- <a href="mailto:jaconcha@gmail.com">¿Sugerencias?</a> -->
+			</p>
+		</div>
+		<!-- <div id="data-sources"></div> -->
+		<!-- <div id="legend"><span class="iconify" data-icon="mdi:map-legend"></span> Confirmed: logarithmic, Others: area proportional to confirmed, Active rate: opacity</div> -->
+		<div id="country-links-wrap"><span id="country-links">&nbsp;</span></div>
+	</div>
 <div id="map"></div>
 <div id="info">
 <div id="summary">
