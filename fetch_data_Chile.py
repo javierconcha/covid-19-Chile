@@ -314,6 +314,15 @@ def send_to_server():
         else:
             print('geodata.json uploaded to server!')
 
+        cmd3 = 'scp '+path_main+'/*.html bfbrzn0q0yvx@www.sci-solve.com:/home/bfbrzn0q0yvx/public_html/covid-19-Chile'                
+        print(cmd3)
+        prog = subprocess.Popen(cmd3, shell=True,stderr=subprocess.PIPE)
+        out, err = prog.communicate()
+        if err:
+            print(err)
+        else:
+            print('/*.html uploaded to server!')
+
     elif sys.platform == 'linux': # in the server
         cmd1 = 'cp '+path_main+'/data.csv /home/bfbrzn0q0yvx/public_html/covid-19-Chile'
         print(cmd1)
@@ -332,6 +341,15 @@ def send_to_server():
             print(err)
         else:
             print('geodata.json uploaded to server!')
+
+        cmd3 = 'cp '+path_main+'/*.html /home/bfbrzn0q0yvx/public_html/covid-19-Chile'                
+        print(cmd3)
+        prog = subprocess.Popen(cmd3, shell=True,stderr=subprocess.PIPE)
+        out, err = prog.communicate()
+        if err:
+            print(err)
+        else:
+            print('*.html uploaded to server!')
 
 
 def git_push():
